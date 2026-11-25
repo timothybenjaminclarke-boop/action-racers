@@ -1696,6 +1696,362 @@
       background: var(--yellow);
     }
 
+    .results-table tr.is-player2 {
+      background: var(--cyan);
+    }
+
+    /* =========================================================================
+       2-PLAYER SPLIT-SCREEN & ONLINE ROOM-CODE MULTIPLAYER UI
+       ========================================================================= */
+    .mp-mode-row {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 0 0 12px 0;
+    }
+
+    .mp-pill {
+      font-family: var(--font-comic);
+      font-size: 0.92rem;
+      letter-spacing: 0.06em;
+      padding: 7px 14px;
+      border: 3px solid var(--ink);
+      background: #172145;
+      color: var(--cream);
+      box-shadow: 3px 3px 0 var(--ink);
+      cursor: pointer;
+      transition: transform 0.1s ease, background 0.12s ease;
+    }
+
+    .mp-pill:hover {
+      transform: translate(-1px, -1px);
+    }
+
+    .mp-pill[aria-pressed="true"] {
+      background: var(--cyan);
+      color: var(--ink);
+    }
+
+    .mp-pill.online-pill[aria-pressed="true"] {
+      background: #00e676;
+      color: var(--ink);
+    }
+
+    .online-lobby-box {
+      background: #101733;
+      border: 3px solid var(--ink);
+      box-shadow: 4px 4px 0 var(--ink);
+      padding: 10px 14px;
+      margin-bottom: 12px;
+      color: var(--cream);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .online-lobby-box[hidden] {
+      display: none !important;
+    }
+
+    .online-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .online-code-badge {
+      font-family: var(--font-comic);
+      font-size: 1.45rem;
+      letter-spacing: 0.18em;
+      background: var(--yellow);
+      color: var(--ink);
+      border: 3px solid var(--ink);
+      padding: 3px 12px;
+      box-shadow: 3px 3px 0 var(--ink);
+    }
+
+    .online-code-input {
+      font-family: var(--font-comic);
+      font-size: 1.1rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      width: 132px;
+      padding: 6px 10px;
+      border: 3px solid var(--ink);
+      background: var(--cream);
+      color: var(--ink);
+      text-align: center;
+    }
+
+    .online-btn {
+      font-family: var(--font-comic);
+      font-size: 0.88rem;
+      letter-spacing: 0.05em;
+      padding: 7px 12px;
+      border: 3px solid var(--ink);
+      background: var(--cyan);
+      color: var(--ink);
+      box-shadow: 3px 3px 0 var(--ink);
+      cursor: pointer;
+    }
+
+    .online-btn.host-btn {
+      background: #00e676;
+    }
+
+    .online-btn.warn-btn {
+      background: var(--crimson);
+      color: var(--cream);
+    }
+
+    .online-status-pill {
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      padding: 4px 10px;
+      border: 2px solid var(--ink);
+      background: #1c2854;
+      color: var(--yellow);
+      text-align: center;
+    }
+
+    .online-status-pill.connected {
+      background: #00e676;
+      color: var(--ink);
+    }
+
+    .p2-garage-tabs {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      margin-bottom: 10px;
+    }
+
+    .p2-garage-tabs[hidden] {
+      display: none !important;
+    }
+
+    .p2-slot-btn {
+      font-family: var(--font-comic);
+      font-size: 0.92rem;
+      padding: 6px 14px;
+      border: 3px solid var(--ink);
+      background: #1b254f;
+      color: var(--cream);
+      box-shadow: 3px 3px 0 var(--ink);
+      cursor: pointer;
+    }
+
+    .p2-slot-btn[data-slot="0"][aria-pressed="true"] {
+      background: var(--crimson);
+      color: var(--yellow);
+    }
+
+    .p2-slot-btn[data-slot="1"][aria-pressed="true"] {
+      background: var(--cyan);
+      color: var(--ink);
+    }
+
+    /* Split-Screen Divider & Dual HUD Layout */
+    #split-divider {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 6px;
+      transform: translateX(-50%);
+      background: linear-gradient(180deg, var(--yellow), var(--cyan), var(--crimson), var(--yellow));
+      border-left: 2px solid var(--ink);
+      border-right: 2px solid var(--ink);
+      z-index: 12;
+      pointer-events: none;
+    }
+
+    #split-divider[hidden] {
+      display: none !important;
+    }
+
+    .split-player-tag {
+      display: none;
+      font-family: var(--font-comic);
+      font-size: 0.95rem;
+      letter-spacing: 0.08em;
+      padding: 3px 10px;
+      border: 3px solid var(--ink);
+      box-shadow: 3px 3px 0 var(--ink);
+      width: fit-content;
+    }
+
+    .split-player-tag.p1-tag {
+      background: var(--crimson);
+      color: var(--yellow);
+    }
+
+    .split-player-tag.p2-tag {
+      background: var(--cyan);
+      color: var(--ink);
+    }
+
+    #p2-hud {
+      display: none;
+      pointer-events: none;
+    }
+
+    #hud.split-mode .split-player-tag {
+      display: inline-block;
+    }
+
+    #hud.split-mode .caption-panel,
+    #hud.split-mode .track-mech-pill {
+      display: none !important;
+    }
+
+    #hud.split-mode .pos-panel {
+      position: fixed;
+      top: 12px;
+      left: 12px;
+      right: auto;
+      transform: scale(0.86);
+      transform-origin: top left;
+    }
+
+    #hud.split-mode .top-left-stack {
+      position: fixed;
+      top: 12px;
+      left: 215px;
+      z-index: 14;
+    }
+
+    #hud.split-mode .lap-panel {
+      position: fixed;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%) scale(0.84);
+      transform-origin: top center;
+      z-index: 16;
+    }
+
+    #hud.split-mode .bottom-left {
+      position: fixed;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      align-items: center;
+      z-index: 16;
+    }
+
+    #hud.split-mode .minimap-panel {
+      width: 124px;
+      height: 94px;
+    }
+
+    #hud.split-mode .hud-actions {
+      justify-content: center;
+      transform: scale(0.86);
+    }
+
+    #hud.split-mode .bottom-center {
+      position: fixed;
+      bottom: 12px;
+      left: 12px;
+      transform: scale(0.82);
+      transform-origin: bottom left;
+      align-items: flex-start;
+    }
+
+    #hud.split-mode .nitro-panel {
+      position: fixed;
+      bottom: 12px;
+      left: calc(50% - 216px);
+      right: auto;
+      width: 204px;
+      transform: scale(0.86);
+      transform-origin: bottom right;
+    }
+
+    #hud.split-mode #p2-hud {
+      display: block;
+    }
+
+    .p2-top-bar {
+      position: fixed;
+      top: 12px;
+      right: 12px;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      z-index: 14;
+      transform: scale(0.86);
+      transform-origin: top right;
+    }
+
+    .p2-lap-pill {
+      font-family: var(--font-comic);
+      font-size: 1.05rem;
+      background: var(--midnight);
+      color: var(--cyan);
+      border: 3px solid var(--ink);
+      padding: 5px 10px;
+      box-shadow: 4px 4px 0 var(--ink);
+    }
+
+    .p2-bottom-left {
+      position: fixed;
+      bottom: 12px;
+      left: calc(50% + 12px);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      align-items: flex-start;
+      z-index: 14;
+      transform: scale(0.82);
+      transform-origin: bottom left;
+    }
+
+    .p2-nitro-panel {
+      position: fixed;
+      bottom: 12px;
+      right: 12px;
+      width: 204px;
+      background: rgba(9, 13, 30, 0.92);
+      border: 4px solid var(--ink);
+      box-shadow: 5px 5px 0 var(--ink);
+      padding: 8px 10px;
+      z-index: 14;
+      transform: scale(0.86);
+      transform-origin: bottom right;
+    }
+
+    .p2-hud-pill-row {
+      display: flex;
+      gap: 8px;
+      align-items: flex-end;
+    }
+
+    .online-hud-badge {
+      position: fixed;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: var(--font-comic);
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      background: #00e676;
+      color: var(--ink);
+      border: 2px solid var(--ink);
+      padding: 2px 10px;
+      box-shadow: 2px 2px 0 var(--ink);
+      z-index: 18;
+      pointer-events: none;
+    }
+
+    .online-hud-badge[hidden] {
+      display: none !important;
+    }
+
     /* Responsive adjustments */
     @media (max-width: 720px) {
       #hud {
@@ -1732,7 +2088,7 @@
     }
   </style>
 
-  <!-- Import map for Three.js r164 via unpkg CDN (zero other external assets) -->
+  <!-- Import map for Three.js r164 via unpkg CDN -->
   <script type="importmap">
     {
       "imports": {
@@ -1741,12 +2097,16 @@
       }
     }
   </script>
+  <!-- PeerJS for zero-backend WebRTC Online 2-Player Room-Code Multiplayer -->
+  <script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js" defer></script>
 </head>
 <body>
   <main id="app">
     <canvas id="game-canvas" aria-label="3D Metropolis at Midnight comic arcade racing track"></canvas>
     <canvas id="speedlines-canvas" aria-hidden="true"></canvas>
     <div id="warp-flash" aria-hidden="true"></div>
+    <div id="split-divider" hidden aria-hidden="true"></div>
+    <div id="online-hud-badge" class="online-hud-badge" hidden>ONLINE 2P</div>
     <div class="comic-frame-vignette" aria-hidden="true"></div>
 
     <!-- Screen-reader live region for race updates -->
@@ -1755,6 +2115,7 @@
     <!-- IN-GAME COMIC BOOK HUD -->
     <div id="hud" class="hidden" aria-label="Race telemetry HUD">
       <div class="top-left-stack">
+        <div class="split-player-tag p1-tag" id="p1-split-tag">P1 • LAP 1/3</div>
         <div class="comic-box caption-panel">
           <div class="caption-header" id="caption-kicker">MEANWHILE...</div>
           <div class="caption-body" id="caption-text">MIDNIGHT FALLS OVER METROPOLIS AS THE ROCKET-CARS ROAR!</div>
@@ -1863,6 +2224,61 @@
           <span>SHIFT: NITRO BLAST!</span>
         </div>
       </div>
+
+      <!-- PLAYER 2 SPLIT-SCREEN HUD (Visible in 2P Local Split-Screen!) -->
+      <div id="p2-hud" aria-label="Player 2 telemetry HUD">
+        <div class="p2-top-bar">
+          <div class="split-player-tag p2-tag" id="p2-split-tag">P2 • LAP 1/3</div>
+          <div class="place-badge" style="background:#00e5ff; color:#05070f;">
+            <div class="place-value" id="p2-hud-place">2ND</div>
+            <div class="place-label">PLACE</div>
+          </div>
+          <div class="speed-badge">
+            <div class="speed-value" id="p2-hud-speed">0</div>
+            <div class="speed-unit">MPH</div>
+          </div>
+        </div>
+
+        <div class="p2-bottom-left">
+          <div class="drift-tier-pill" id="p2-drift-tier-pill" aria-hidden="true">
+            <div id="p2-drift-tier-label">DRIFT CHARGE</div>
+            <div class="drift-meter-track"><div class="drift-meter-fill" id="p2-drift-meter-fill"></div></div>
+          </div>
+          <div class="p2-hud-pill-row">
+            <div class="powerup-slot" id="p2-powerup-slot">
+              <div class="powerup-icon-box" id="p2-powerup-icon" aria-hidden="true">?</div>
+              <div class="powerup-meta">
+                <span class="powerup-kicker" id="p2-powerup-kicker">P2 ITEM</span>
+                <span class="powerup-name" id="p2-powerup-name">EMPTY SLOT</span>
+                <span class="powerup-key" id="p2-powerup-key">[L] / ['] USE</span>
+              </div>
+            </div>
+            <div class="super-ability-btn ready" id="p2-super-ability-btn" hidden>
+              <div class="super-ability-icon" id="p2-super-ability-icon" aria-hidden="true">✦</div>
+              <div class="powerup-meta" style="flex:1;">
+                <span class="powerup-kicker" id="p2-super-ability-kicker" style="color:inherit;">SPECIAL [;]</span>
+                <span class="powerup-name" id="p2-super-ability-name" style="font-size:0.95rem;">SPECIAL</span>
+                <div class="super-ability-bar"><div class="super-ability-fill" id="p2-super-ability-fill"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="p2-nitro-panel">
+          <div class="nitro-header">
+            <span class="nitro-label" style="color:#00e5ff;">P2 NITRO</span>
+            <span class="nitro-status" id="p2-nitro-status">DRIFT TO CHARGE</span>
+          </div>
+          <div class="nitro-segments" id="p2-nitro-segments">
+            <div class="nitro-seg"></div><div class="nitro-seg"></div><div class="nitro-seg"></div><div class="nitro-seg"></div><div class="nitro-seg"></div>
+            <div class="nitro-seg"></div><div class="nitro-seg"></div><div class="nitro-seg"></div><div class="nitro-seg"></div><div class="nitro-seg"></div>
+          </div>
+          <div class="drift-hint">
+            <span>R-SHIFT: DRIFT</span>
+            <span>ENTER: NITRO!</span>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- HIDDEN ADMIN MODE TOOLBAR (Ctrl+Shift+A / Alt+Shift+A / 5x Title Click / ?admin=1) -->
@@ -1901,7 +2317,7 @@
         </button>
       </div>
 
-      <!-- STEP 2: GRAND PRIX & SINGLE RACE SELECT -->
+      <!-- STEP 2: GRAND PRIX, SINGLE RACE & 2-PLAYER MODE SELECT -->
       <div id="step-map" class="comic-cover" style="width: min(860px, 96vw);" hidden>
         <div class="step-header">
           <h2 class="step-title" id="cover-title">SELECT EVENT</h2>
@@ -1909,6 +2325,29 @@
             <button type="button" class="tab-pill" id="tab-mode-gp" aria-pressed="true">GRAND PRIX</button>
             <button type="button" class="tab-pill" id="tab-mode-single" aria-pressed="false">SINGLE RACE</button>
           </div>
+        </div>
+
+        <div class="mp-mode-row" role="group" aria-label="Player mode">
+          <button type="button" class="mp-pill" id="tab-mp-1p" aria-pressed="true">1P SOLO</button>
+          <button type="button" class="mp-pill" id="tab-mp-local2p" aria-pressed="false">2P SPLIT-SCREEN</button>
+          <button type="button" class="mp-pill online-pill" id="tab-mp-online2p" aria-pressed="false">🌐 2P ONLINE ROOM</button>
+        </div>
+
+        <!-- ONLINE 2P WEBRTC ROOM LOBBY -->
+        <div id="online-lobby-box" class="online-lobby-box" hidden>
+          <div class="online-row">
+            <button type="button" class="online-btn host-btn" id="btn-online-host">HOST ROOM</button>
+            <span style="font-weight:800; opacity:0.8;">OR</span>
+            <input type="text" id="online-room-input" class="online-code-input" maxlength="6" placeholder="CODE" aria-label="Enter room code">
+            <button type="button" class="online-btn" id="btn-online-join">JOIN ROOM</button>
+            <button type="button" class="online-btn warn-btn" id="btn-online-leave" hidden>LEAVE</button>
+          </div>
+          <div class="online-row" id="online-room-share-row" hidden>
+            <span style="font-size:0.82rem; font-weight:800;">ROOM CODE:</span>
+            <span class="online-code-badge" id="online-room-code">-----</span>
+            <button type="button" class="online-btn" id="btn-copy-invite">📋 COPY INVITE LINK</button>
+          </div>
+          <div class="online-status-pill" id="online-status-pill">HOST A ROOM OR ENTER A FRIEND'S CODE TO RACE ONLINE (2P + 2 AI)</div>
         </div>
 
         <div class="gp-picker" id="gp-picker" role="group" aria-label="Select Grand Prix"></div>
@@ -1933,6 +2372,11 @@
           </div>
         </div>
 
+        <div id="p2-garage-tabs" class="p2-garage-tabs" hidden>
+          <button type="button" class="p2-slot-btn" data-slot="0" aria-pressed="true">P1 CAR: KRYPTON COMET</button>
+          <button type="button" class="p2-slot-btn" data-slot="1" aria-pressed="false">P2 CAR: GOTHAM WEDGE</button>
+        </div>
+
         <div class="car-picker" id="car-picker" role="group" aria-label="Select car"></div>
 
         <div class="cover-actions">
@@ -1951,12 +2395,12 @@
 
         <div class="controls-panel" style="margin-bottom: 12px;">
           <ul class="controls-grid">
-            <li><kbd>W</kbd>/<kbd>↑</kbd> <kbd>S</kbd>/<kbd>↓</kbd> <span>Drive / Brake</span></li>
-            <li><kbd>A</kbd>/<kbd>←</kbd> <kbd>D</kbd>/<kbd>→</kbd> <span>Steer</span></li>
-            <li><kbd>SPACE</kbd> <span>Hop &amp; Drift (Refills Nitro)</span></li>
-            <li><kbd>SHIFT</kbd> <span>Nitro Boost</span></li>
-            <li><kbd>E</kbd> / <kbd>F</kbd> <span>Use Powerup</span></li>
-            <li><kbd>Q</kbd> <span>Tier Apex / Super Car Special Ability</span></li>
+            <li><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> <span>P1 (or 1P) Drive / Steer</span></li>
+            <li><kbd>SPACE</kbd> / <kbd>L-SHIFT</kbd> <span>P1 Hop-Drift / Nitro</span></li>
+            <li><kbd>E</kbd> / <kbd>Q</kbd> <span>P1 Powerup / Special</span></li>
+            <li><kbd>↑</kbd><kbd>←</kbd><kbd>↓</kbd><kbd>→</kbd> <span>P2 Split-Screen Drive (or 1P)</span></li>
+            <li><kbd>R-SHIFT</kbd> / <kbd>ENTER</kbd> <span>P2 Hop-Drift / Nitro</span></li>
+            <li><kbd>L</kbd> or <kbd>'</kbd> / <kbd>;</kbd> <span>P2 Powerup / Special (Gamepads supported!)</span></li>
             <li><kbd>P</kbd> / <kbd>R</kbd> / <kbd>M</kbd> <span>Pause / Reset / Mute</span></li>
           </ul>
         </div>
@@ -2133,6 +2577,43 @@
     const adminBarEl = document.getElementById('admin-bar');
     const adminTrackSelectEl = document.getElementById('admin-track-select');
     const adminCarSelectEl = document.getElementById('admin-car-select');
+
+    // 2-Player Split-Screen & Online Room-Code DOM references
+    const splitDividerEl = document.getElementById('split-divider');
+    const onlineHudBadgeEl = document.getElementById('online-hud-badge');
+    const p1SplitTagEl = document.getElementById('p1-split-tag');
+    const p2SplitTagEl = document.getElementById('p2-split-tag');
+    const p2HudPlaceEl = document.getElementById('p2-hud-place');
+    const p2HudSpeedEl = document.getElementById('p2-hud-speed');
+    const p2DriftTierPillEl = document.getElementById('p2-drift-tier-pill');
+    const p2DriftTierLabelEl = document.getElementById('p2-drift-tier-label');
+    const p2DriftMeterFillEl = document.getElementById('p2-drift-meter-fill');
+    const p2PowerupSlotEl = document.getElementById('p2-powerup-slot');
+    const p2PowerupIconEl = document.getElementById('p2-powerup-icon');
+    const p2PowerupKickerEl = document.getElementById('p2-powerup-kicker');
+    const p2PowerupNameEl = document.getElementById('p2-powerup-name');
+    const p2PowerupKeyEl = document.getElementById('p2-powerup-key');
+    const p2SuperAbilityBtnEl = document.getElementById('p2-super-ability-btn');
+    const p2SuperAbilityIconEl = document.getElementById('p2-super-ability-icon');
+    const p2SuperAbilityKickerEl = document.getElementById('p2-super-ability-kicker');
+    const p2SuperAbilityNameEl = document.getElementById('p2-super-ability-name');
+    const p2SuperAbilityFillEl = document.getElementById('p2-super-ability-fill');
+    const p2NitroSegmentsEl = document.getElementById('p2-nitro-segments');
+    const p2NitroSegNodes = p2NitroSegmentsEl ? Array.from(p2NitroSegmentsEl.children) : [];
+    const p2NitroStatusEl = document.getElementById('p2-nitro-status');
+    const tabMp1pEl = document.getElementById('tab-mp-1p');
+    const tabMpLocal2pEl = document.getElementById('tab-mp-local2p');
+    const tabMpOnline2pEl = document.getElementById('tab-mp-online2p');
+    const onlineLobbyBoxEl = document.getElementById('online-lobby-box');
+    const onlineRoomInputEl = document.getElementById('online-room-input');
+    const onlineRoomCodeEl = document.getElementById('online-room-code');
+    const onlineRoomShareRowEl = document.getElementById('online-room-share-row');
+    const onlineStatusPillEl = document.getElementById('online-status-pill');
+    const btnOnlineHostEl = document.getElementById('btn-online-host');
+    const btnOnlineJoinEl = document.getElementById('btn-online-join');
+    const btnOnlineLeaveEl = document.getElementById('btn-online-leave');
+    const btnCopyInviteEl = document.getElementById('btn-copy-invite');
+    const p2GarageTabsEl = document.getElementById('p2-garage-tabs');
 
     function announceSR(msg) {
       srAnnouncer.textContent = '';
@@ -3647,6 +4128,7 @@
     scene.fog = new THREE.FogExp2(PALETTE.midnight, 0.00145);
 
     const camera = new THREE.PerspectiveCamera(66, window.innerWidth / window.innerHeight, 0.5, 1600);
+    const cameraP2 = new THREE.PerspectiveCamera(66, (window.innerWidth * 0.5) / window.innerHeight, 0.5, 1600);
 
     // Post-processing with subtle UnrealBloomPass for glowing neon trim & headlights
     const composer = new EffectComposer(renderer);
@@ -10921,34 +11403,42 @@
     }
 
     function updatePowerupHUD() {
-      if (player.rouletteTimer > 0) {
-        const p = POWERUPS[player.rouletteDisplayIdx % POWERUPS.length];
-        powerupSlotEl.className = 'powerup-slot rolling';
-        powerupIconEl.textContent = p.icon;
-        powerupIconEl.style.background = p.color;
-        powerupIconEl.style.color = '#05070f';
-        powerupKickerEl.textContent = 'ROLLING HERO POWER...';
-        powerupNameEl.textContent = p.name;
-        powerupKeyEl.textContent = 'STAND BY!';
-      } else if (player.heldPowerup) {
-        const p = player.heldPowerup;
-        const rank = p.grantedRank || 2;
-        const tierLabels = ['', '1ST: DEFENSIVE', '2ND: TACTICAL', '3RD: HEAVY POWER', '4TH: ULTRA COMEBACK!'];
-        powerupSlotEl.className = 'powerup-slot has-item';
-        powerupIconEl.textContent = p.icon;
-        powerupIconEl.style.background = p.color;
-        powerupIconEl.style.color = '#05070f';
-        powerupKickerEl.textContent = tierLabels[Math.min(4, rank)] || 'POWERUP READY!';
-        powerupNameEl.textContent = p.name;
-        powerupKeyEl.textContent = `${p.desc} [E]/[F]`;
-      } else {
-        powerupSlotEl.className = 'powerup-slot';
-        powerupIconEl.textContent = '?';
-        powerupIconEl.style.background = '#1b254f';
-        powerupIconEl.style.color = '#ffea00';
-        powerupKickerEl.textContent = 'HERO ITEM BOX';
-        powerupNameEl.textContent = 'EMPTY SLOT';
-        powerupKeyEl.textContent = 'HIT ? CUBES • [E]/[F] USE';
+      const primary = getLocalPrimaryRacer();
+      function syncSlot(r, slotEl, iconEl, kickerEl, nameEl, keyEl, keyHint) {
+        if (!slotEl) return;
+        if (r.rouletteTimer > 0) {
+          const p = POWERUPS[r.rouletteDisplayIdx % POWERUPS.length];
+          slotEl.className = 'powerup-slot rolling';
+          iconEl.textContent = p.icon;
+          iconEl.style.background = p.color;
+          iconEl.style.color = '#05070f';
+          kickerEl.textContent = 'ROLLING HERO POWER...';
+          nameEl.textContent = p.name;
+          keyEl.textContent = 'STAND BY!';
+        } else if (r.heldPowerup) {
+          const p = r.heldPowerup;
+          const rank = p.grantedRank || 2;
+          const tierLabels = ['', '1ST: DEFENSIVE', '2ND: TACTICAL', '3RD: HEAVY POWER', '4TH: ULTRA COMEBACK!'];
+          slotEl.className = 'powerup-slot has-item';
+          iconEl.textContent = p.icon;
+          iconEl.style.background = p.color;
+          iconEl.style.color = '#05070f';
+          kickerEl.textContent = tierLabels[Math.min(4, rank)] || 'POWERUP READY!';
+          nameEl.textContent = p.name;
+          keyEl.textContent = `${p.desc} ${keyHint}`;
+        } else {
+          slotEl.className = 'powerup-slot';
+          iconEl.textContent = '?';
+          iconEl.style.background = '#1b254f';
+          iconEl.style.color = '#ffea00';
+          kickerEl.textContent = r === racers[1] && isLocal2P() ? 'P2 ITEM BOX' : 'HERO ITEM BOX';
+          nameEl.textContent = 'EMPTY SLOT';
+          keyEl.textContent = `HIT ? CUBES • ${keyHint}`;
+        }
+      }
+      syncSlot(primary, powerupSlotEl, powerupIconEl, powerupKickerEl, powerupNameEl, powerupKeyEl, '[E]/[F] USE');
+      if (isLocal2P() && p2PowerupSlotEl) {
+        syncSlot(racers[1], p2PowerupSlotEl, p2PowerupIconEl, p2PowerupKickerEl, p2PowerupNameEl, p2PowerupKeyEl, "[L]/['] USE");
       }
     }
 
@@ -11201,9 +11691,12 @@
       });
     }
 
-    function activatePowerup(r) {
+    function activatePowerup(r, fromRemote = false) {
       if (!r.heldPowerup || r.rouletteTimer > 0) return;
       const power = r.heldPowerup;
+      if (!fromRemote && isOnline2P() && isLocalHumanRacer(r)) {
+        sendOnlineMsg({ type: 'event', kind: 'powerup', racerIdx: racers.indexOf(r), powerId: power.id });
+      }
       const sortedNow = getSortedRacers();
       const rank = sortedNow.findIndex((x) => x.id === r.id) + 1;
       // Potency scales cleanly with rank: 1st = 0.65x (modest), 2nd = 0.85x, 3rd = 1.05x, 4th = 1.25x (strong comeback!)
@@ -11364,7 +11857,7 @@
         }
       }
 
-      if (r.isPlayer) updatePowerupHUD();
+      if (isLocalHumanRacer(r)) updatePowerupHUD();
     }
 
     // Brief 0.35s Laser Blink Micro-Stun (mild brief jolt — never a harsh spinout!)
@@ -11383,12 +11876,15 @@
       }
     }
 
-    // TIER APEX & FINAL SUPER CAR SPECIAL ABILITIES [Q] (Balanced Small Tactical Perks!)
-    function activateSuperAbility(r) {
-      if (!r || !r.abilityType || r.superCharge < 100) return;
-      if (r.superOverdriveTimer > 0 || r.glideTimer > 0) return;
-      const canUseInState = r.recoveryState === 'none' || (r.abilityType === 'boost_hop' && r.recoveryState === 'airborne');
+    // TIER APEX & FINAL SUPER CAR SPECIAL ABILITIES [Q] / [;] (Balanced Small Tactical Perks!)
+    function activateSuperAbility(r, fromRemote = false) {
+      if (!r || !r.abilityType || (!fromRemote && r.superCharge < 100)) return;
+      if (!fromRemote && (r.superOverdriveTimer > 0 || r.glideTimer > 0)) return;
+      const canUseInState = fromRemote || r.recoveryState === 'none' || (r.abilityType === 'boost_hop' && r.recoveryState === 'airborne');
       if (!canUseInState) return;
+      if (!fromRemote && isOnline2P() && isLocalHumanRacer(r)) {
+        sendOnlineMsg({ type: 'event', kind: 'ability', racerIdx: racers.indexOf(r) });
+      }
 
       const kind = r.abilityType;
       r.superCharge = 0;
@@ -11550,14 +12046,19 @@
               );
             }
 
+            if (isOnline2P() && isLocalHumanRacer(r)) {
+              const bIdx = itemBoxes.indexOf(box);
+              if (bIdx >= 0) sendOnlineMsg({ type: 'event', kind: 'itemBox', boxIdx: bIdx });
+            }
+
             if (!r.heldPowerup && r.rouletteTimer <= 0) {
-              if (r.isPlayer) {
+              if (isLocalHumanRacer(r)) {
                 r.rouletteTimer = 1.15;
                 r.rouletteTick = 0;
                 spawnComicBubble('POWER UP!', r.worldPos, 'action', 1.0);
                 sound.playItemTick();
                 updatePowerupHUD();
-              } else {
+              } else if (!isAnyHumanRacer(r)) {
                 r.heldPowerup = pickWeightedPowerup(r);
                 r.aiPowerupTimer = 1.8 + Math.random() * 2.8;
               }
@@ -11567,22 +12068,27 @@
         }
       }
 
-      // Player Item Roulette Spin
-      if (player.rouletteTimer > 0) {
-        player.rouletteTimer -= dt;
-        player.rouletteTick -= dt;
-        if (player.rouletteTick <= 0) {
-          player.rouletteTick = 0.085;
-          player.rouletteDisplayIdx = (player.rouletteDisplayIdx + 1) % POWERUPS.length;
-          sound.playItemTick();
-          updatePowerupHUD();
-        }
-        if (player.rouletteTimer <= 0) {
-          player.heldPowerup = pickWeightedPowerup(player);
-          sound.playItemLock();
-          updatePowerupHUD();
-          setCaption('SUPER POWER!', `${player.heldPowerup.name} READY — HIT [E] OR [F]!`, 3.2);
-          announceSR(`Powerup ready: ${player.heldPowerup.name}. Press E or F to use.`);
+      // Local Human Item Roulette Spin (supports P1, P2 Split-Screen & Online Guest!)
+      for (const hr of [racers[0], racers[1]]) {
+        if (!isLocalHumanRacer(hr)) continue;
+        if (hr.rouletteTimer > 0) {
+          hr.rouletteTimer -= dt;
+          hr.rouletteTick -= dt;
+          if (hr.rouletteTick <= 0) {
+            hr.rouletteTick = 0.085;
+            hr.rouletteDisplayIdx = (hr.rouletteDisplayIdx + 1) % POWERUPS.length;
+            sound.playItemTick();
+            updatePowerupHUD();
+          }
+          if (hr.rouletteTimer <= 0) {
+            hr.heldPowerup = pickWeightedPowerup(hr);
+            sound.playItemLock();
+            updatePowerupHUD();
+            if (hr === getLocalPrimaryRacer()) {
+              setCaption('SUPER POWER!', `${hr.heldPowerup.name} READY — HIT [E] OR [F]!`, 3.2);
+              announceSR(`Powerup ready: ${hr.heldPowerup.name}. Press E or F to use.`);
+            }
+          }
         }
       }
 
@@ -12369,7 +12875,7 @@
     }
 
     // =========================================================================
-    // 13. INPUT HANDLING & GAME STATE MACHINE
+    // 13. INPUT HANDLING, 2P CONTROLS, GAMEPADS & MULTIPLAYER STATE
     // =========================================================================
     const keys = {
       up: false,
@@ -12379,6 +12885,95 @@
       drift: false,
       nitro: false
     };
+    const keysP2 = {
+      up: false,
+      down: false,
+      left: false,
+      right: false,
+      drift: false,
+      nitro: false
+    };
+    const gpPrevButtons = [{}, {}];
+
+    let mpMode = '1p'; // '1p' | 'local2p' | 'online2p'
+    let selectedCarIdxP2 = 1; // Default P2 car: Gotham Wedge
+    let garageActiveSlot = 0; // 0 = P1, 1 = P2 in Local 2P Garage
+    let splitFinishGraceTimer = 0;
+
+    // Online 2P WebRTC PeerJS Session State
+    const online = {
+      role: 'none',       // 'none' | 'host' | 'guest'
+      peer: null,
+      conn: null,
+      roomCode: '',
+      connected: false,
+      remoteCarIdx: 1,
+      sendAccum: 0,
+      lastSnapTime: 0,
+      remoteTargets: {}   // racerId -> latest network snapshot for smooth interpolation
+    };
+
+    function isLocal2P() {
+      return mpMode === 'local2p';
+    }
+    function isOnline2P() {
+      return mpMode === 'online2p' && online.connected;
+    }
+    function getLocalPrimaryRacer() {
+      return (mpMode === 'online2p' && online.role === 'guest') ? racers[1] : racers[0];
+    }
+    function isLocalHumanRacer(r) {
+      if (mpMode === 'local2p') return r === racers[0] || r === racers[1];
+      if (mpMode === 'online2p') {
+        return online.role === 'guest' ? r === racers[1] : r === racers[0];
+      }
+      return r === racers[0];
+    }
+    function isAnyHumanRacer(r) {
+      if (mpMode === 'local2p' || isOnline2P()) return r === racers[0] || r === racers[1];
+      return r === racers[0];
+    }
+
+    function pollGamepadControls(padIdx, baseKeys, racer) {
+      const out = { ...baseKeys };
+      if (!navigator.getGamepads) return out;
+      const pads = navigator.getGamepads();
+      const pad = pads && pads[padIdx];
+      if (!pad || !pad.connected) return out;
+      const prev = gpPrevButtons[padIdx] || {};
+      const btn = (i) => Boolean(pad.buttons[i] && (pad.buttons[i].pressed || pad.buttons[i].value > 0.35));
+      const axX = pad.axes[0] || 0;
+      if (btn(7) || btn(0) || btn(12)) out.up = true;       // RT / A / D-pad Up
+      if (btn(6) || btn(13)) out.down = true;               // LT / D-pad Down
+      if (axX < -0.25 || btn(14)) out.left = true;
+      if (axX > 0.25 || btn(15)) out.right = true;
+      const driftPressed = btn(5) || btn(1);                // RB / B
+      if (driftPressed) {
+        if (!prev.drift && gameState === 'racing' && racer) triggerHumanHop(racer);
+        out.drift = true;
+      }
+      if (btn(2)) out.nitro = true;                         // X = Nitro
+      if (btn(3) && !prev.item && gameState === 'racing' && racer) activatePowerup(racer); // Y = Powerup
+      if (btn(4) && !prev.special && gameState === 'racing' && racer) activateSuperAbility(racer); // LB = Special
+      gpPrevButtons[padIdx] = { drift: driftPressed, item: btn(3), special: btn(4) };
+      return out;
+    }
+
+    function triggerHumanHop(r) {
+      if (!r || r.spinTimer > 0 || r.frozenTimer > 0) return;
+      if (r.recoveryState === 'none' && r.hopTimer <= 0) {
+        r.hopTimer = 0.21;
+        sound.playHop();
+        if (currentCourse?.halfPipeZones && r.halfPipeWall > 0.72 && r.speed > 32 && r.featureCooldown <= 0) {
+          r.featureCooldown = 1.4;
+          r.miniTurboTimer = Math.max(r.miniTurboTimer, 1.05);
+          r.nitro = Math.min(100, r.nitro + 14);
+          r.speed = Math.min(126, r.speed + 10);
+          sound.playBoostBlast(true);
+          spawnComicBubble('PIPE LIP BOOST!', r.worldPos, 'boost', 1.15);
+        }
+      }
+    }
 
     let gameState = 'menu'; // 'menu' | 'countdown' | 'racing' | 'paused' | 'finished'
     let menuStep = 'welcome'; // 'welcome' | 'map' | 'car'
@@ -12553,6 +13148,15 @@
     }
 
     function assignRivalCarsForEvent() {
+      const twoPlayerActive = mpMode === 'local2p' || mpMode === 'online2p';
+      if (twoPlayerActive) {
+        const p2Scheme = CAR_SCHEMES[((selectedCarIdxP2 % CAR_SCHEMES.length) + CAR_SCHEMES.length) % CAR_SCHEMES.length];
+        applyCarLivery(racers[1], p2Scheme, false);
+        racers[1].name = mpMode === 'local2p' ? `${p2Scheme.name} (P2)` : `${p2Scheme.name} (P2)`;
+        racers[0].name = `${CAR_SCHEMES[selectedCarIdx]?.name || 'KRYPTON COMET'} (P1)`;
+      } else {
+        racers[0].name = `${CAR_SCHEMES[selectedCarIdx]?.name || 'KRYPTON COMET'} (YOU)`;
+      }
       let targetTier = 0;
       if (gpSession.active) {
         targetTier = GRAND_PRIXS[gpSession.gpIdx].aiCarTier;
@@ -12565,14 +13169,15 @@
         }
         if (!adminMode) targetTier = Math.min(progress.unlockedCarTier, targetTier);
       }
-      // Pick 3 distinct rival cars from the target tier (falling back to adjacent tiers if player picked one)
-      const tierPool = CAR_SCHEMES.filter((s, idx) => s.tier === targetTier && idx !== selectedCarIdx);
-      const fallbackPool = CAR_SCHEMES.filter((s, idx) => s.tier !== targetTier && idx !== selectedCarIdx);
-      const rivalSchemes = [...tierPool, ...fallbackPool].slice(0, 3);
-      for (let i = 1; i < racers.length; i++) {
-        if (rivalSchemes[i - 1]) {
-          applyCarLivery(racers[i], rivalSchemes[i - 1], false);
-        }
+      const taken = new Set([selectedCarIdx]);
+      if (twoPlayerActive) taken.add(selectedCarIdxP2);
+      const tierPool = CAR_SCHEMES.filter((s, idx) => s.tier === targetTier && !taken.has(idx));
+      const fallbackPool = CAR_SCHEMES.filter((s, idx) => s.tier !== targetTier && !taken.has(idx));
+      const rivalSchemes = [...tierPool, ...fallbackPool];
+      const startAiIdx = twoPlayerActive ? 2 : 1;
+      for (let i = startAiIdx; i < racers.length; i++) {
+        const sch = rivalSchemes[i - startAiIdx];
+        if (sch) applyCarLivery(racers[i], sch, false);
       }
     }
 
@@ -12747,7 +13352,9 @@
       updatePowerupHUD();
 
       raceElapsed = 0;
+      splitFinishGraceTimer = 0;
       cameraShake = 0;
+      cameraShakeP2 = 0;
       countdownTimer = 3.2;
       lastCountdownInt = 4;
       lastAnnouncedPlace = playerGridSlot;
@@ -12759,7 +13366,16 @@
       finishOverlay.hidden = true;
       if (cornerToolsEl) cornerToolsEl.hidden = true;
       hudEl.classList.remove('hidden');
+      hudEl.classList.toggle('split-mode', isLocal2P());
       hudEl.inert = false;
+      if (splitDividerEl) splitDividerEl.hidden = !isLocal2P();
+      if (onlineHudBadgeEl) {
+        onlineHudBadgeEl.hidden = !isOnline2P();
+        if (isOnline2P()) {
+          onlineHudBadgeEl.textContent = `🌐 ONLINE ROOM ${online.roomCode} • ${online.role === 'host' ? 'P1 HOST' : 'P2 GUEST'}`;
+        }
+      }
+      updateCameraAspects();
 
       trackDir = 1;
       boostPadMeshes.forEach((pm) => { pm.rotation.y = Math.PI; });
@@ -12827,6 +13443,7 @@
           loadCourse(gp.courseIndices[0]);
           racers.forEach((r) => updateRacerTransform(r, 0.016));
           renderGpPicker();
+          if (isOnline2P() && online.role === 'host') sendOnlineLobbyState();
         });
         gpPickerEl.appendChild(btn);
       });
@@ -12851,6 +13468,7 @@
           loadCourse(idx);
           racers.forEach((r) => updateRacerTransform(r, 0.016));
           renderCoursePicker();
+          if (isOnline2P() && online.role === 'host') sendOnlineLobbyState();
         });
         coursePickerEl.appendChild(btn);
       });
@@ -12910,7 +13528,8 @@
         btn.type = 'button';
         btn.className = scheme.isSuperCar ? 'car-card super-card' : 'car-card';
         btn.disabled = locked;
-        btn.setAttribute('aria-pressed', String(!locked && idx === selectedCarIdx));
+        const activeCarIdx = garageActiveSlot === 1 ? selectedCarIdxP2 : selectedCarIdx;
+        btn.setAttribute('aria-pressed', String(!locked && idx === activeCarIdx));
         const lockNote = locked
           ? `<div class="car-lock-tag">${getCarUnlockReason(scheme)}</div>`
           : '';
@@ -12943,13 +13562,36 @@
       });
     }
 
-    function selectPlayerCarScheme(idx, playChime = false) {
+    function syncP2GarageTabsUI() {
+      if (!p2GarageTabsEl) return;
+      const p1Name = CAR_SCHEMES[selectedCarIdx]?.name || 'KRYPTON COMET';
+      const p2Name = CAR_SCHEMES[selectedCarIdxP2]?.name || 'GOTHAM WEDGE';
+      p2GarageTabsEl.querySelectorAll('.p2-slot-btn').forEach((btn) => {
+        const s = Number(btn.dataset.slot);
+        btn.setAttribute('aria-pressed', String(s === garageActiveSlot));
+        btn.textContent = s === 0 ? `P1 CAR: ${p1Name}` : `P2 CAR: ${p2Name}`;
+      });
+    }
+
+    function selectPlayerCarScheme(idx, playChime = false, slotOverride = null) {
       const target = CAR_SCHEMES[((idx % CAR_SCHEMES.length) + CAR_SCHEMES.length) % CAR_SCHEMES.length];
       if (!isCarUnlocked(target)) return;
-      selectedCarIdx = CAR_SCHEMES.indexOf(target);
-      selectedCarTierTab = target.tier;
-      applyCarLivery(player, target, true);
+      const slot = slotOverride !== null ? slotOverride : garageActiveSlot;
+      if (slot === 1) {
+        selectedCarIdxP2 = CAR_SCHEMES.indexOf(target);
+        selectedCarTierTab = target.tier;
+        applyCarLivery(racers[1], target, false);
+        racers[1].name = `${target.name} (P2)`;
+        if (isOnline2P() && online.role === 'guest') sendOnlineMsg({ type: 'p2Car', carIdx: selectedCarIdxP2 });
+      } else {
+        selectedCarIdx = CAR_SCHEMES.indexOf(target);
+        selectedCarTierTab = target.tier;
+        applyCarLivery(player, target, !isLocal2P() && mpMode !== 'online2p');
+        if (isLocal2P() || mpMode === 'online2p') player.name = `${target.name} (P1)`;
+        if (isOnline2P() && online.role === 'host') sendOnlineLobbyState();
+      }
       assignRivalCarsForEvent();
+      syncP2GarageTabsUI();
       renderCarPicker();
       if (adminCarSelectEl) adminCarSelectEl.value = String(selectedCarIdx);
       if (playChime && sound.initialized) {
@@ -12981,23 +13623,49 @@
         renderCoursePicker();
       } else if (step === 'car') {
         startOverlay.setAttribute('aria-labelledby', 'car-step-title');
+        if (p2GarageTabsEl) p2GarageTabsEl.hidden = !isLocal2P();
+        if (!isLocal2P()) garageActiveSlot = (mpMode === 'online2p' && online.role === 'guest') ? 1 : 0;
+        syncP2GarageTabsUI();
+        const showRacer = garageActiveSlot === 1 ? racers[1] : player;
         const showU = (currentCourse && currentCourse.finishU) ? currentCourse.finishU : 0.012;
-        player.u = showU;
-        player.lat = 0;
-        player.relYaw = 0;
-        player.driftSlip = 0;
-        player.steerAngle = 0;
-        player.spinAngle = 0;
-        player.hopHeight = 0;
-        player.onShortcut = false;
-        player.activeJumpDeckIdx = -1;
-        player.recoveryState = 'none';
-        updateRacerTransform(player, 0.016);
+        showRacer.u = showU;
+        showRacer.lat = 0;
+        showRacer.relYaw = 0;
+        showRacer.driftSlip = 0;
+        showRacer.steerAngle = 0;
+        showRacer.spinAngle = 0;
+        showRacer.hopHeight = 0;
+        showRacer.onShortcut = false;
+        showRacer.activeJumpDeckIdx = -1;
+        showRacer.recoveryState = 'none';
+        updateRacerTransform(showRacer, 0.016);
+        const activeIdx = garageActiveSlot === 1 ? selectedCarIdxP2 : selectedCarIdx;
         selectedCarTierTab = (preferredTierTab !== null && preferredTierTab !== undefined)
           ? preferredTierTab
-          : CAR_SCHEMES[selectedCarIdx].tier;
+          : (CAR_SCHEMES[activeIdx]?.tier || 0);
         renderCarPicker();
-        if (btnStartEl) btnStartEl.textContent = raceMode === 'gp' ? `START ${GRAND_PRIXS[selectedGpIdx].name}!` : 'RACE!';
+        updateStartButtonLabel();
+      }
+      if (splitDividerEl) splitDividerEl.hidden = true;
+      if (onlineHudBadgeEl) onlineHudBadgeEl.hidden = true;
+      hudEl.classList.remove('split-mode');
+      updateCameraAspects();
+    }
+
+    function updateStartButtonLabel() {
+      if (!btnStartEl) return;
+      if (mpMode === 'online2p') {
+        if (online.role === 'guest') {
+          btnStartEl.textContent = online.connected ? 'WAITING FOR HOST TO START...' : 'JOIN A ROOM FIRST!';
+        } else if (online.role === 'host') {
+          btnStartEl.textContent = online.connected ? 'START ONLINE 2P RACE!' : 'WAITING FOR P2 TO JOIN...';
+        } else {
+          btnStartEl.textContent = 'HOST OR JOIN ONLINE ROOM!';
+        }
+      } else if (isLocal2P()) {
+        btnStartEl.textContent = raceMode === 'gp' ? `2P ${GRAND_PRIXS[selectedGpIdx].name}!` : 'START 2P SPLIT-SCREEN!';
+      } else {
+        btnStartEl.textContent = raceMode === 'gp' ? `START ${GRAND_PRIXS[selectedGpIdx].name}!` : 'RACE!';
       }
     }
 
@@ -13137,7 +13805,8 @@
           tbody.innerHTML = '';
           cupSorted.forEach((r, idx) => {
             const tr = document.createElement('tr');
-            if (r.isPlayer) tr.className = 'is-player';
+            if (r === racers[0]) tr.className = 'is-player';
+            else if (r === racers[1] && (isLocal2P() || isOnline2P())) tr.className = 'is-player2';
             const rPos = sorted.indexOf(r) + 1;
             tr.innerHTML = `<td>${ordinal(idx + 1)}</td><td>${r.name}</td><td>${ordinal(rPos)}</td><td>+${racePtsMap[r.id]}</td><td><strong>${gpSession.points[r.id]}</strong></td>`;
             tbody.appendChild(tr);
@@ -13163,7 +13832,8 @@
           tbody.innerHTML = '';
           sorted.forEach((r, idx) => {
             const tr = document.createElement('tr');
-            if (r.isPlayer) tr.className = 'is-player';
+            if (r === racers[0]) tr.className = 'is-player';
+            else if (r === racers[1] && (isLocal2P() || isOnline2P())) tr.className = 'is-player2';
             const timeStr = r.finished
               ? formatTime(r.finishTime)
               : `+${Math.max(0.1, (player.totalProgress - r.totalProgress) * 18).toFixed(2)}s`;
@@ -13430,6 +14100,20 @@
 
     document.getElementById('btn-start').addEventListener('click', () => {
       sound.init();
+      if (mpMode === 'online2p') {
+        if (online.role === 'guest') {
+          showItemToast('WAITING FOR HOST TO START THE RACE!', '#00e5ff', 2.4);
+          return;
+        }
+        if (online.role !== 'host' || !online.connected) {
+          showItemToast('HOST A ROOM AND WAIT FOR PLAYER 2 TO JOIN FIRST!', '#ffea00', 2.6);
+          return;
+        }
+        if (raceMode === 'gp') startGrandPrix(selectedGpIdx);
+        else { gpSession.active = false; resetRace(false); }
+        sendOnlineStartRace();
+        return;
+      }
       if (raceMode === 'gp') {
         startGrandPrix(selectedGpIdx);
       } else {
@@ -13439,14 +14123,18 @@
     });
     btnNextCourseEl.addEventListener('click', () => {
       sound.init();
+      if (isOnline2P() && online.role === 'guest') {
+        showItemToast('WAITING FOR HOST TO START NEXT RACE!', '#00e5ff', 2.2);
+        return;
+      }
       const action = btnNextCourseEl.dataset.action || 'next-single';
       if (action === 'next-gp-race') {
         gpSession.raceIdx++;
         const nextCourseIdx = GRAND_PRIXS[gpSession.gpIdx].courseIndices[gpSession.raceIdx];
         loadCourse(nextCourseIdx);
         resetRace(true);
+        if (isOnline2P() && online.role === 'host') sendOnlineStartRace();
       } else if (action === 'next-gp') {
-        // Send player cleanly to Garage with newly unlocked Car Tier tab open & next GP selected!
         const nextGp = Math.min(GRAND_PRIXS.length - 1, gpSession.gpIdx + 1);
         raceMode = 'gp';
         selectedGpIdx = nextGp;
@@ -13459,14 +14147,21 @@
         openMainMenu('car', 4);
       } else if (action === 'replay-gp') {
         startGrandPrix(gpSession.gpIdx);
+        if (isOnline2P() && online.role === 'host') sendOnlineStartRace();
       } else {
         loadCourse(getNextUnlockedCourseIdx(currentCourseIdx));
         resetRace(true);
+        if (isOnline2P() && online.role === 'host') sendOnlineStartRace();
       }
     });
     document.getElementById('btn-play-again').addEventListener('click', () => {
       sound.init();
+      if (isOnline2P() && online.role === 'guest') {
+        showItemToast('WAITING FOR HOST TO REMATCH!', '#00e5ff', 2.2);
+        return;
+      }
       resetRace(true);
+      if (isOnline2P() && online.role === 'host') sendOnlineStartRace();
     });
     document.getElementById('btn-resume').addEventListener('click', () => setPaused(false));
     document.getElementById('btn-pause').addEventListener('click', (e) => { e.currentTarget.blur(); setPaused(true); });
@@ -13508,48 +14203,86 @@
         return;
       }
 
+      // Let text inputs (e.g. Online Room Code) receive normal typing without triggering game keys!
+      if (document.activeElement && (document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'TEXTAREA' || document.activeElement.tagName === 'SELECT')) {
+        if (code === 'Enter' && document.activeElement === onlineRoomInputEl) {
+          btnOnlineJoinEl?.click();
+        }
+        return;
+      }
+
       if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Space'].includes(code)) {
         if (gameState === 'racing' || gameState === 'countdown') {
           e.preventDefault();
         }
       }
-      if (code === 'KeyW' || code === 'ArrowUp') keys.up = true;
-      if (code === 'KeyS' || code === 'ArrowDown') keys.down = true;
-      if (code === 'KeyA' || code === 'ArrowLeft') keys.left = true;
-      if (code === 'KeyD' || code === 'ArrowRight') keys.right = true;
-      if (code === 'Space') {
-        if (!keys.drift && gameState === 'racing' && player.spinTimer <= 0 && player.frozenTimer <= 0) {
-          if (player.recoveryState === 'none' && player.hopTimer <= 0) {
-            // Mario Kart style hop on Space press + Fortress Half-Pipe Lip Boost (with cooldown!)
-            player.hopTimer = 0.21;
-            sound.playHop();
-            if (currentCourse?.halfPipeZones && player.halfPipeWall > 0.72 && player.speed > 32 && player.featureCooldown <= 0) {
-              player.featureCooldown = 1.4;
-              player.miniTurboTimer = Math.max(player.miniTurboTimer, 1.05);
-              player.nitro = Math.min(100, player.nitro + 14);
-              player.speed = Math.min(126, player.speed + 10);
-              sound.playBoostBlast(true);
-              spawnComicBubble('PIPE LIP BOOST!', player.worldPos, 'boost', 1.15);
-            }
-          }
-        }
-        keys.drift = true;
-      }
-      if (code === 'ShiftLeft' || code === 'ShiftRight') keys.nitro = true;
 
-      if ((code === 'KeyE' || code === 'KeyF' || code === 'Enter') && gameState === 'racing') {
-        e.preventDefault();
-        activatePowerup(player);
-      }
-      if (code === 'KeyQ' && gameState === 'racing') {
-        e.preventDefault();
-        activateSuperAbility(player);
+      if (isLocal2P()) {
+        // LOCAL 2P SPLIT-SCREEN: P1 = WASD + Space + L-Shift + E/F + Q | P2 = Arrows + R-Shift// + Enter/. + L/' + ;/K
+        if (code === 'KeyW') keys.up = true;
+        if (code === 'KeyS') keys.down = true;
+        if (code === 'KeyA') keys.left = true;
+        if (code === 'KeyD') keys.right = true;
+        if (code === 'Space') {
+          if (!keys.drift && gameState === 'racing') triggerHumanHop(racers[0]);
+          keys.drift = true;
+        }
+        if (code === 'ShiftLeft') keys.nitro = true;
+        if ((code === 'KeyE' || code === 'KeyF') && gameState === 'racing') {
+          e.preventDefault();
+          activatePowerup(racers[0]);
+        }
+        if (code === 'KeyQ' && gameState === 'racing') {
+          e.preventDefault();
+          activateSuperAbility(racers[0]);
+        }
+
+        if (code === 'ArrowUp') keysP2.up = true;
+        if (code === 'ArrowDown') keysP2.down = true;
+        if (code === 'ArrowLeft') keysP2.left = true;
+        if (code === 'ArrowRight') keysP2.right = true;
+        if (code === 'ShiftRight' || code === 'Slash') {
+          if (!keysP2.drift && gameState === 'racing') triggerHumanHop(racers[1]);
+          keysP2.drift = true;
+        }
+        if (code === 'Enter' || code === 'Period' || code === 'Numpad0') keysP2.nitro = true;
+        if ((code === 'KeyL' || code === 'Quote' || code === 'NumpadEnter') && gameState === 'racing') {
+          e.preventDefault();
+          activatePowerup(racers[1]);
+        }
+        if ((code === 'Semicolon' || code === 'KeyK') && gameState === 'racing') {
+          e.preventDefault();
+          activateSuperAbility(racers[1]);
+        }
+      } else {
+        // 1P SOLO OR ONLINE 2P (single local keyboard drives local primary racer — WASD or Arrows!)
+        const localRacer = getLocalPrimaryRacer();
+        if (code === 'KeyW' || code === 'ArrowUp') keys.up = true;
+        if (code === 'KeyS' || code === 'ArrowDown') keys.down = true;
+        if (code === 'KeyA' || code === 'ArrowLeft') keys.left = true;
+        if (code === 'KeyD' || code === 'ArrowRight') keys.right = true;
+        if (code === 'Space') {
+          if (!keys.drift && gameState === 'racing') triggerHumanHop(localRacer);
+          keys.drift = true;
+        }
+        if (code === 'ShiftLeft' || code === 'ShiftRight') keys.nitro = true;
+        if ((code === 'KeyE' || code === 'KeyF' || code === 'Enter') && gameState === 'racing') {
+          e.preventDefault();
+          activatePowerup(localRacer);
+        }
+        if (code === 'KeyQ' && gameState === 'racing') {
+          e.preventDefault();
+          activateSuperAbility(localRacer);
+        }
       }
 
       if (code === 'KeyM') toggleMute();
       if (code === 'KeyN') toggleMusic();
       if (code === 'KeyR' && (gameState === 'racing' || gameState === 'countdown' || gameState === 'paused')) {
-        resetRace(gpSession.active && gpSession.raceIdx > 0);
+        if (!isOnline2P() || online.role === 'host') {
+          resetRace(gpSession.active && gpSession.raceIdx > 0);
+          if (isOnline2P() && online.role === 'host') sendOnlineStartRace();
+        }
       }
       if (code === 'KeyP' || code === 'Escape') {
         if (gameState === 'racing') setPaused(true);
@@ -13559,12 +14292,19 @@
 
     window.addEventListener('keyup', (e) => {
       const code = e.code;
-      if (code === 'KeyW' || code === 'ArrowUp') keys.up = false;
-      if (code === 'KeyS' || code === 'ArrowDown') keys.down = false;
-      if (code === 'KeyA' || code === 'ArrowLeft') keys.left = false;
-      if (code === 'KeyD' || code === 'ArrowRight') keys.right = false;
+      if (code === 'KeyW') keys.up = false;
+      if (code === 'KeyS') keys.down = false;
+      if (code === 'KeyA') keys.left = false;
+      if (code === 'KeyD') keys.right = false;
+      if (code === 'ArrowUp') { keys.up = false; keysP2.up = false; }
+      if (code === 'ArrowDown') { keys.down = false; keysP2.down = false; }
+      if (code === 'ArrowLeft') { keys.left = false; keysP2.left = false; }
+      if (code === 'ArrowRight') { keys.right = false; keysP2.right = false; }
       if (code === 'Space') keys.drift = false;
-      if (code === 'ShiftLeft' || code === 'ShiftRight') keys.nitro = false;
+      if (code === 'ShiftLeft') keys.nitro = false;
+      if (code === 'ShiftRight') { keys.nitro = false; keysP2.drift = false; }
+      if (code === 'Slash') keysP2.drift = false;
+      if (code === 'Enter' || code === 'Period' || code === 'Numpad0') keysP2.nitro = false;
     });
 
     // =========================================================================
@@ -13824,7 +14564,7 @@
       }
     }
 
-    function updateFallAndRecovery(r, dt) {
+    function updateFallAndRecovery(r, dt, ctrl = keys) {
       const dir = r.dir || 1;
 
       if (r.jumpDeckCooldown > 0) r.jumpDeckCooldown = Math.max(0, r.jumpDeckCooldown - dt);
@@ -13866,9 +14606,9 @@
           }
         }
 
-        // Mid-air steering around airUp (consistent screen left/right even when upside-down!)
-        if (r.isPlayer) {
-          const airSteer = (keys.right ? 1 : 0) - (keys.left ? 1 : 0);
+        // Mid-air steering around airUp (consistent screen left/right for P1 & P2 even when upside-down!)
+        if (isLocalHumanRacer(r)) {
+          const airSteer = (ctrl.right ? 1 : 0) - (ctrl.left ? 1 : 0);
           if (Math.abs(airSteer) > 0.01) {
             const ang = -airSteer * 0.65 * (airPhys.airSteerMult || 1.0) * dt;
             r.fallVel.applyAxisAngle(airUp, ang);
@@ -14141,8 +14881,8 @@
       if (r.visual.gliderWings) r.visual.gliderWings.visible = (r.glideTimer || 0) > 0;
     }
 
-    // Driving on an Elevated Upper Shorter Golden Sky-Bridge (supports both Player & AI!)
-    function updateJumpDeckDriving(r, dt) {
+    // Driving on an Elevated Upper Shorter Golden Sky-Bridge (supports Player 1, Player 2 & AI!)
+    function updateJumpDeckDriving(r, dt, ctrl = keys) {
       if (r.activeJumpDeckIdx < 0 || !courseFeatures.jumpDecks[r.activeJumpDeckIdx]) return false;
       const jd = courseFeatures.jumpDecks[r.activeJumpDeckIdx];
       const st = r.stats || { topSpeedMult: 1, accelMult: 1, steerMult: 1, nitroBurnMult: 1, boostMult: 1 };
@@ -14183,12 +14923,12 @@
       const superActive = r.superOverdriveTimer > 0;
       const slowFactor = superActive ? 1.0 : (r.spinTimer > 0 ? 0.22 : (r.microStunTimer > 0 ? 0.78 : (r.frozenTimer > 0 ? 0.28 : (r.magnetSlowTimer > 0 ? 0.48 : 1.0))));
 
-      if (r.isPlayer && r.phantomTimer <= 0) {
+      if (isLocalHumanRacer(r) && r.phantomTimer <= 0) {
         const locked = r.spinTimer > 0;
-        const accelInput = locked ? 0 : ((keys.up ? 1 : 0) - (keys.down ? 1 : 0));
-        const steerInput = locked ? 0 : ((keys.right ? 1 : 0) - (keys.left ? 1 : 0));
+        const accelInput = locked ? 0 : ((ctrl.up ? 1 : 0) - (ctrl.down ? 1 : 0));
+        const steerInput = locked ? 0 : ((ctrl.right ? 1 : 0) - (ctrl.left ? 1 : 0));
         const NITRO_RATE = 26;
-        const wantsNitro = !locked && !keys.drift && keys.nitro && r.nitro > 3 && r.speed > 14;
+        const wantsNitro = !locked && !ctrl.drift && ctrl.nitro && r.nitro > 3 && r.speed > 14;
         r.isBoosting = wantsNitro;
         if (r.isBoosting) r.nitro = Math.max(0, r.nitro - NITRO_RATE * st.nitroBurnMult * dt);
 
@@ -14201,7 +14941,7 @@
         r.speed = THREE.MathUtils.clamp(r.speed, 12, superActive ? 156 : Math.min(156, 86 * st.topSpeedMult * effBoost));
 
         // Full drift + mini-turbo support seamlessly on the twisting upper road!
-        const canDriftJd = !locked && !r.isBoosting && r.frozenTimer <= 0 && keys.drift && r.speed > 22;
+        const canDriftJd = !locked && !r.isBoosting && r.frozenTimer <= 0 && ctrl.drift && r.speed > 22;
         if (canDriftJd) {
           if (!r.isDrifting && Math.abs(steerInput) > 0.08) {
             r.isDrifting = true;
@@ -14443,38 +15183,46 @@
       updateRacerTransform(r, 0.016);
       if (r.prevWorldPos) r.prevWorldPos.copy(r.worldPos);
 
-      if (r.isPlayer) {
+      if (isLocalHumanRacer(r)) {
         const flashColor = choseRight ? 'rgba(255, 234, 0, 0.72)' : 'rgba(0, 229, 255, 0.78)';
-        triggerWarpFlash(flashColor, 'rgba(255, 0, 168, 0.92)');
+        if (r === getLocalPrimaryRacer()) triggerWarpFlash(flashColor, 'rgba(255, 0, 168, 0.92)');
         sound.playWarp();
-        cameraShake = Math.max(cameraShake, 0.28);
+        if (r === racers[1] && isLocal2P()) cameraShakeP2 = Math.max(cameraShakeP2, 0.28);
+        else cameraShake = Math.max(cameraShake, 0.28);
         const secPair = currentCourse.sectorNames && currentCourse.sectorNames[newSeg];
         const secLabel = secPair ? secPair[choseRight ? 1 : 0] : `SECTOR ${newSeg + 1}`;
         const wasInv = Boolean(currentCourse.invertedSegments && currentCourse.invertedSegments.includes(prevSeg));
         const nowInv = Boolean(currentCourse.invertedSegments && currentCourse.invertedSegments.includes(newSeg));
         if (nowInv && !wasInv) {
           spawnComicBubble('UPSIDE DOWN!!', r.worldPos, 'action', 1.25);
-          showItemToast('✦ GRAVITY FLIPPED — RACING UPSIDE DOWN!', '#ff00a8', 2.6);
-          setCaption('GRAVITY PORTAL!', `FLIPPED UPSIDE DOWN ON ${secLabel}!`, 2.8);
+          if (r === getLocalPrimaryRacer()) {
+            showItemToast('✦ GRAVITY FLIPPED — RACING UPSIDE DOWN!', '#ff00a8', 2.6);
+            setCaption('GRAVITY PORTAL!', `FLIPPED UPSIDE DOWN ON ${secLabel}!`, 2.8);
+          }
         } else if (wasInv && !nowInv) {
           spawnComicBubble('RIGHT-SIDE UP!', r.worldPos, 'boost', 1.2);
-          showItemToast('✦ GRAVITY RESTORED — BACK RIGHT-SIDE UP!', '#00e5ff', 2.4);
-          setCaption('GRAVITY RESTORED!', `BACK RIGHT-SIDE UP ON ${secLabel}!`, 2.6);
+          if (r === getLocalPrimaryRacer()) {
+            showItemToast('✦ GRAVITY RESTORED — BACK RIGHT-SIDE UP!', '#00e5ff', 2.4);
+            setCaption('GRAVITY RESTORED!', `BACK RIGHT-SIDE UP ON ${secLabel}!`, 2.6);
+          }
         } else {
           spawnComicBubble('HYPER-WARP!', r.worldPos, 'boost', 1.18);
-          showItemToast(`✦ WARPED TO ${secLabel}!`, choseRight ? '#ffea00' : '#00e5ff', 2.4);
-          setCaption('SPACE PORTAL!', `TELEPORTED TO ${secLabel}!`, 2.6);
+          if (r === getLocalPrimaryRacer()) {
+            showItemToast(`✦ WARPED TO ${secLabel}!`, choseRight ? '#ffea00' : '#00e5ff', 2.4);
+            setCaption('SPACE PORTAL!', `TELEPORTED TO ${secLabel}!`, 2.6);
+          }
         }
-        snapCameraToPlayer();
+        if (r === racers[1] && isLocal2P()) snapCameraToP2();
+        else snapCameraToPlayer();
       } else {
         spawnComicBubble('WARP!', r.worldPos, 'action', 0.8);
       }
       return true;
     }
 
-    // Shortcut Entry: supports Phantom Portal Shortcuts AND Wormhole Flush Skinnier Side-Road Shortcuts!
+    // Shortcut Entry: supports Phantom Portal Shortcuts AND Wormhole Flush Skinnier Side-Road Shortcuts for P1 & P2!
     function checkShortcutEntry(r) {
-      if (!r.isPlayer || !currentCourse || !shortcutTracks.length) return false;
+      if (!isLocalHumanRacer(r) || !currentCourse || !shortcutTracks.length) return false;
       if (r.onShortcut || r.shortcutCooldown > 0 || r.recoveryState !== 'none') return false;
       const dir = r.dir || 1;
       const halfW = TRACK_WIDTH * 0.5;
@@ -14542,8 +15290,8 @@
       return false;
     }
 
-    // Natural Manual Driving on ANY Skinny Shortcut / Side-Road (Boost Pads + Gift Boxes + Super Car Overdrive!)
-    function updateShortcutDriving(r, dt) {
+    // Natural Manual Driving on ANY Skinny Shortcut / Side-Road (supports P1 & P2!)
+    function updateShortcutDriving(r, dt, ctrl = keys) {
       if (!r.onShortcut || !shortcutTracks.length) return false;
       const scTrack = shortcutTracks[r.activeShortcutIdx || 0] || shortcutTracks[0];
       const scLen = scTrack.length || 1;
@@ -14584,13 +15332,13 @@
       }
 
       const controlLocked = r.spinTimer > 0;
-      const accelInput = controlLocked ? 0 : ((keys.up ? 1 : 0) - (keys.down ? 1 : 0));
-      const steerInput = controlLocked ? 0 : ((keys.right ? 1 : 0) - (keys.left ? 1 : 0));
+      const accelInput = controlLocked ? 0 : ((ctrl.up ? 1 : 0) - (ctrl.down ? 1 : 0));
+      const steerInput = controlLocked ? 0 : ((ctrl.right ? 1 : 0) - (ctrl.left ? 1 : 0));
       const st = r.stats || { topSpeedMult: 1, accelMult: 1, steerMult: 1, driftChargeMult: 1, nitroBurnMult: 1 };
 
       // Sequential Nitro works cleanly on the skinny shortcut too!
       const NITRO_RATE = 26;
-      const wantsNitro = !controlLocked && r.phantomTimer <= 0 && !r.isDrifting && !keys.drift && keys.nitro && r.nitro > 3 && r.speed > 14;
+      const wantsNitro = !controlLocked && r.phantomTimer <= 0 && !r.isDrifting && !ctrl.drift && ctrl.nitro && r.nitro > 3 && r.speed > 14;
       r.isBoosting = wantsNitro;
       if (r.isBoosting) r.nitro = Math.max(0, r.nitro - NITRO_RATE * st.nitroBurnMult * dt);
 
@@ -14825,7 +15573,11 @@
     }
 
     function updatePlayerPhysics(dt) {
-      const r = player;
+      updateHumanRacerPhysics(player, pollGamepadControls(0, keys, player), dt);
+    }
+
+    function updateHumanRacerPhysics(r, ctrl, dt) {
+      const isPrimaryLocal = r === getLocalPrimaryRacer();
 
       // Defensive NaN guards so player state can never corrupt or freeze
       if (!Number.isFinite(r.u)) r.u = 0;
@@ -14840,9 +15592,9 @@
       if (r.prevWorldPos) r.prevWorldPos.copy(r.worldPos);
 
       if (updateRacerRiftFlip(r, dt)) return;
-      if (updateFallAndRecovery(r, dt)) return;
-      if (updateJumpDeckDriving(r, dt)) return;
-      if (updateShortcutDriving(r, dt)) return;
+      if (updateFallAndRecovery(r, dt, ctrl)) return;
+      if (updateJumpDeckDriving(r, dt, ctrl)) return;
+      if (updateShortcutDriving(r, dt, ctrl)) return;
       const dir = r.dir || 1;
       if (r.lapCooldown > 0) r.lapCooldown = Math.max(0, r.lapCooldown - dt);
       if (r.crestCooldown > 0) r.crestCooldown = Math.max(0, r.crestCooldown - dt);
@@ -14913,8 +15665,8 @@
 
       const phys = getCoursePhysics(currentCourse, r.u, r);
       const controlLocked = r.spinTimer > 0;
-      const accelInput = controlLocked ? 0 : ((keys.up ? 1 : 0) - (keys.down ? 1 : 0));
-      const steerInput = controlLocked ? 0 : ((keys.right ? 1 : 0) - (keys.left ? 1 : 0));
+      const accelInput = controlLocked ? 0 : ((ctrl.up ? 1 : 0) - (ctrl.down ? 1 : 0));
+      const steerInput = controlLocked ? 0 : ((ctrl.right ? 1 : 0) - (ctrl.left ? 1 : 0));
 
       const st = r.stats || { topSpeedMult: 1, accelMult: 1, steerMult: 1, driftChargeMult: 1, nitroBurnMult: 1 };
 
@@ -14922,7 +15674,7 @@
       if (phys.zoneTag === 'TIME DILATION' && r.blackHoleWarnTimer <= 0) {
         r.blackHoleWarnTimer = 4.5;
         spawnComicBubble('TIME DILATION!', r.worldPos, 'action', 1.15);
-        setCaption('TIME DILATION!', 'UNIVERSAL BLACK HOLE SLOWDOWN — AFFECTS ALL RACERS!', 2.6);
+        if (isPrimaryLocal) setCaption('TIME DILATION!', 'UNIVERSAL BLACK HOLE SLOWDOWN — AFFECTS ALL RACERS!', 2.6);
       }
 
       // =====================================================================
@@ -14931,16 +15683,17 @@
       const NITRO_RATE = 26;
 
       // Nitro can ONLY fire when NOT drifting!
-      const wantsNitro = !controlLocked && !r.isDrifting && !keys.drift && keys.nitro && r.nitro > 3 && r.speed > 14;
+      const wantsNitro = !controlLocked && !r.isDrifting && !ctrl.drift && ctrl.nitro && r.nitro > 3 && r.speed > 14;
       if (wantsNitro && !r.isBoosting) {
         sound.playBoostBlast(false);
-        cameraShake = Math.max(cameraShake, 0.36);
+        if (r === racers[1]) cameraShakeP2 = Math.max(cameraShakeP2, 0.36);
+        else cameraShake = Math.max(cameraShake, 0.36);
         if (boostBubbleCooldown <= 0) {
           const word = Math.random() > 0.5 ? 'WHOOSH!' : 'ZOOM!';
           spawnComicBubble(word, r.worldPos, 'boost', 1.12);
           boostBubbleCooldown = 1.3;
         }
-        setCaption('UP, UP & AWAY!', 'NITRO JETS ROARING!', 2.6);
+        if (isPrimaryLocal) setCaption('UP, UP & AWAY!', 'NITRO JETS ROARING!', 2.6);
       }
       r.isBoosting = wantsNitro;
       if (r.isBoosting) {
@@ -14977,7 +15730,7 @@
       r.speed = THREE.MathUtils.clamp(r.speed, -14, maxCap);
 
       // Drift can ONLY run when NOT actively firing Nitro (strictly sequential!)
-      const canHoldDrift = !controlLocked && !r.isBoosting && r.frozenTimer <= 0 && keys.drift && r.speed > 22;
+      const canHoldDrift = !controlLocked && !r.isBoosting && r.frozenTimer <= 0 && ctrl.drift && r.speed > 22;
       const f = sampleDirectedTrack(r.u, dir);
       const deckInfoPre = getRoadDeckInfo(r.u);
       const pipe = deckInfoPre.isSplit ? { depth: 0, elev: 0, slope: 0, bankAngle: 0, wallFrac: 0 } : getHalfPipeProfile(r.u, r.lat);
@@ -15792,7 +16545,23 @@
         r.finished = true;
         r.finishTime = raceElapsed;
         spawnComicBubble('SUPER!', r.worldPos, 'action', 1.35);
-        showFinishScreen();
+        if (isOnline2P()) {
+          sendOnlineMsg({ type: 'event', kind: 'finish', racerIdx: racers.indexOf(r), finishTime: raceElapsed });
+        }
+        if (isLocal2P() || isOnline2P()) {
+          const bothDone = racers[0].finished && racers[1].finished;
+          if (bothDone) {
+            showFinishScreen();
+          } else {
+            splitFinishGraceTimer = 10.0;
+            const who = r === racers[0] ? 'PLAYER 1' : 'PLAYER 2';
+            const placeNow = getSortedRacers().findIndex((x) => x === r) + 1;
+            showCallout(`${who} FINISHED ${ordinal(placeNow)}!`, 2.0);
+            sound.playHeroicFanfare();
+          }
+        } else {
+          showFinishScreen();
+        }
       } else if (completedLaps >= r.lap && r.lap < TOTAL_LAPS) {
         r.lap = completedLaps + 1;
         r.lapCooldown = 2.6;
@@ -15809,13 +16578,14 @@
           }
         }
 
+        const tag = isLocal2P() ? (r === racers[0] ? 'P1 ' : 'P2 ') : '';
         if (r.lap === TOTAL_LAPS) {
-          showCallout('FINAL LAP!', 1.25);
-          setCaption('FINAL LAP!', 'LAST LAP TO THE FINISH!', 3.8);
-          announceSR('Final lap! Lap 3 of 3.');
+          showCallout(`${tag}FINAL LAP!`, 1.25);
+          if (r === getLocalPrimaryRacer()) setCaption('FINAL LAP!', 'LAST LAP TO THE FINISH!', 3.8);
+          announceSR(`${tag}Final lap! Lap 3 of 3.`);
         } else {
-          showCallout(`LAP ${r.lap} OF ${TOTAL_LAPS}!`, 1.05);
-          announceSR(`Lap ${r.lap} of ${TOTAL_LAPS}.`);
+          showCallout(`${tag}LAP ${r.lap} OF ${TOTAL_LAPS}!`, 1.05);
+          announceSR(`${tag}Lap ${r.lap} of ${TOTAL_LAPS}.`);
         }
       }
     }
@@ -16381,28 +17151,205 @@
     }
 
     // =========================================================================
-    // 15. DYNAMIC CHASE CAMERA (FOLLOWS CAR'S TRUE HEADING, ZERO AUTO-STEER)
+    // 15. DYNAMIC CHASE CAMERAS (P1 + P2 SPLIT-SCREEN & ONLINE GUEST!)
     // =========================================================================
     const camPosCurrent = new THREE.Vector3(0, 26, 98);
     const camLookCurrent = new THREE.Vector3(0, 18, 60);
     const camUpCurrent = new THREE.Vector3(0, 1, 0);
     let camHeadingYaw = 0;
 
-    function snapCameraToPlayer() {
-      const f = sampleDirectedTrack(player.u, player.dir || 1);
-      camHeadingYaw = player.relYaw || 0;
-      const carForward = f.tan.clone().multiplyScalar(Math.cos(camHeadingYaw))
-        .addScaledVector(f.right, Math.sin(camHeadingYaw));
-      camPosCurrent.copy(player.worldPos)
+    const camP2State = {
+      pos: new THREE.Vector3(0, 26, 98),
+      look: new THREE.Vector3(0, 18, 60),
+      up: new THREE.Vector3(0, 1, 0),
+      headingYaw: 0
+    };
+    let cameraShakeP2 = 0;
+
+    function updateCameraAspects() {
+      const w = window.innerWidth;
+      const h = Math.max(1, window.innerHeight);
+      if (isLocal2P() && gameState !== 'menu') {
+        const halfAspect = (w * 0.5) / h;
+        camera.aspect = halfAspect;
+        camera.updateProjectionMatrix();
+        cameraP2.aspect = halfAspect;
+        cameraP2.updateProjectionMatrix();
+      } else {
+        camera.aspect = w / h;
+        camera.updateProjectionMatrix();
+      }
+    }
+
+    function snapCameraForRacer(r, posVec, lookVec, upVec, camObj, isP2 = false) {
+      const f = sampleDirectedTrack(r.u, r.dir || 1);
+      const yaw = r.relYaw || 0;
+      if (isP2) camP2State.headingYaw = yaw;
+      else camHeadingYaw = yaw;
+      const carForward = f.tan.clone().multiplyScalar(Math.cos(yaw))
+        .addScaledVector(f.right, Math.sin(yaw));
+      posVec.copy(r.worldPos)
         .addScaledVector(carForward, -12.5)
         .addScaledVector(f.up, 5.2);
-      camLookCurrent.copy(player.worldPos)
+      lookVec.copy(r.worldPos)
         .addScaledVector(carForward, 16)
         .addScaledVector(f.up, 1.5);
-      camUpCurrent.copy(f.up);
-      camera.up.copy(camUpCurrent);
-      camera.position.copy(camPosCurrent);
-      camera.lookAt(camLookCurrent);
+      upVec.copy(f.up);
+      camObj.up.copy(upVec);
+      camObj.position.copy(posVec);
+      camObj.lookAt(lookVec);
+    }
+
+    function snapCameraToPlayer() {
+      snapCameraForRacer(getLocalPrimaryRacer(), camPosCurrent, camLookCurrent, camUpCurrent, camera, false);
+      if (isLocal2P()) snapCameraToP2();
+    }
+
+    function snapCameraToP2() {
+      snapCameraForRacer(racers[1], camP2State.pos, camP2State.look, camP2State.up, cameraP2, true);
+    }
+
+    function updateChaseCameraFor(r, posVec, lookVec, upVec, camObj, dt, isP2 = false) {
+      const pDir = r.dir || 1;
+      if (r.riftFlipTimer > 0) {
+        const f = sampleDirectedTrack(r.u, pDir);
+        const ang = r.riftFlipOrbitAngle;
+        const rotFwd = f.tan.clone().multiplyScalar(Math.cos(ang))
+          .addScaledVector(f.right, -Math.sin(ang)).normalize();
+        posVec.copy(r.worldPos).addScaledVector(rotFwd, -13.5).addScaledVector(f.up, 5.8);
+        lookVec.copy(r.worldPos).addScaledVector(rotFwd, 15).addScaledVector(f.up, 1.7);
+        camObj.position.copy(posVec);
+        camObj.lookAt(lookVec);
+        return;
+      }
+
+      if (r.recoveryState === 'airborne') {
+        const airUp = (r.airUp && r.airUp.lengthSq() > 0.5) ? r.airUp : worldUp;
+        const hFwd = r.fallVel.clone().addScaledVector(airUp, -r.fallVel.dot(airUp));
+        if (hFwd.lengthSq() > 0.25) hFwd.normalize();
+        else hFwd.copy(sampleDirectedTrack(r.u, pDir).tan);
+        const airCamPos = r.worldPos.clone().addScaledVector(hFwd, -13.5).addScaledVector(airUp, 7.6);
+        const airLook = r.worldPos.clone().addScaledVector(hFwd, 11).addScaledVector(airUp, -2.4);
+        posVec.lerp(airCamPos, Math.min(1, dt * 7.5));
+        lookVec.lerp(airLook, Math.min(1, dt * 9.5));
+        const cosA = THREE.MathUtils.clamp(upVec.dot(airUp), -1, 1);
+        const angA = Math.acos(cosA);
+        if (angA > 1e-4) {
+          const axA = new THREE.Vector3().crossVectors(upVec, airUp);
+          if (axA.lengthSq() > 1e-8) axA.normalize();
+          else axA.copy(hFwd);
+          upVec.applyAxisAngle(axA, angA * Math.min(1, dt * 8.5)).normalize();
+        }
+        camObj.up.copy(upVec);
+        camObj.position.copy(posVec);
+        camObj.lookAt(lookVec);
+        return;
+      } else if (r.recoveryState === 'falling') {
+        lookVec.lerp(r.worldPos, Math.min(1, dt * 9));
+        camObj.position.copy(posVec);
+        camObj.lookAt(lookVec);
+        return;
+      } else if (r.recoveryState === 'rescuing') {
+        const tf = sampleDirectedTrack(r.rescueTargetU, pDir);
+        const rescueCamPos = r.worldPos.clone().addScaledVector(tf.tan, -16).addScaledVector(tf.up, 7.5);
+        posVec.lerp(rescueCamPos, Math.min(1, dt * 6));
+        lookVec.lerp(r.worldPos, Math.min(1, dt * 9));
+        const cosR = THREE.MathUtils.clamp(upVec.dot(tf.up), -1, 1);
+        const angR = Math.acos(cosR);
+        if (angR > 1e-4) {
+          const axR = new THREE.Vector3().crossVectors(upVec, tf.up);
+          if (axR.lengthSq() > 1e-8) axR.normalize();
+          else axR.copy(tf.tan);
+          upVec.applyAxisAngle(axR, angR * Math.min(1, dt * 8.5)).normalize();
+        }
+        camObj.up.copy(upVec);
+        camObj.position.copy(posVec);
+        camObj.lookAt(lookVec);
+        return;
+      } else if (r.activeJumpDeckIdx >= 0 && courseFeatures.jumpDecks[r.activeJumpDeckIdx]) {
+        const jf = sampleJumpDeckFrame(r.activeJumpDeckIdx, r.jdU);
+        const jdFwd = jf.tan.clone().multiplyScalar(Math.cos(r.relYaw)).addScaledVector(jf.right, Math.sin(r.relYaw)).normalize();
+        const jdCamPos = r.worldPos.clone().addScaledVector(jdFwd, -12.8).addScaledVector(jf.up, 5.2);
+        const jdLook = r.worldPos.clone().addScaledVector(jdFwd, 18).addScaledVector(jf.up, 1.5);
+        posVec.lerp(jdCamPos, Math.min(1, dt * 10));
+        lookVec.lerp(jdLook, Math.min(1, dt * 12));
+        upVec.lerp(worldUp, Math.min(1, dt * 8)).normalize();
+        camObj.up.copy(upVec);
+        camObj.position.copy(posVec);
+        const jdBoost = r.isBoosting || r.padBoostTimer > 0 || r.miniTurboTimer > 0 || r.superOverdriveTimer > 0;
+        camObj.fov = THREE.MathUtils.lerp(camObj.fov, jdBoost ? 79 : 68, Math.min(1, dt * 6));
+        camObj.updateProjectionMatrix();
+        camObj.lookAt(lookVec);
+        return;
+      } else if (r.onShortcut && shortcutTracks.length) {
+        const sf = sampleShortcutFrame(r.scU, r.scDir, r.activeShortcutIdx || 0);
+        const scFwd = sf.tan.clone().multiplyScalar(Math.cos(r.relYaw)).addScaledVector(sf.right, Math.sin(r.relYaw)).normalize();
+        const scCamPos = r.worldPos.clone().addScaledVector(scFwd, -12.8).addScaledVector(sf.up, 4.9);
+        const scLook = r.worldPos.clone().addScaledVector(scFwd, 18).addScaledVector(sf.up, 1.5);
+        posVec.lerp(scCamPos, Math.min(1, dt * 10));
+        lookVec.lerp(scLook, Math.min(1, dt * 12));
+        upVec.lerp(worldUp, Math.min(1, dt * 8)).normalize();
+        camObj.up.copy(upVec);
+        camObj.position.copy(posVec);
+        const scBoost = r.isBoosting || r.padBoostTimer > 0 || r.miniTurboTimer > 0 || r.superOverdriveTimer > 0;
+        camObj.fov = THREE.MathUtils.lerp(camObj.fov, scBoost ? 79 : 69, Math.min(1, dt * 6));
+        camObj.updateProjectionMatrix();
+        camObj.lookAt(lookVec);
+        return;
+      }
+
+      const f = sampleDirectedTrack(r.u, pDir);
+      const boosting = r.isBoosting || r.padBoostTimer > 0 || r.miniTurboTimer > 0 || r.phantomTimer > 0 || r.superOverdriveTimer > 0;
+      const distBack = boosting ? 14.0 : 12.0;
+      const heightUp = boosting ? 4.7 : 5.3;
+
+      let yawNow = isP2 ? camP2State.headingYaw : camHeadingYaw;
+      yawNow = THREE.MathUtils.lerp(yawNow, r.relYaw || 0, Math.min(1, dt * 6.5));
+      if (isP2) camP2State.headingYaw = yawNow;
+      else camHeadingYaw = yawNow;
+
+      const camForward = f.tan.clone().multiplyScalar(Math.cos(yawNow)).addScaledVector(f.right, Math.sin(yawNow)).normalize();
+      const camRight = f.right.clone().multiplyScalar(Math.cos(yawNow)).addScaledVector(f.tan, -Math.sin(yawNow)).normalize();
+      const targetPos = r.worldPos.clone()
+        .addScaledVector(camForward, -distBack)
+        .addScaledVector(f.up, heightUp)
+        .addScaledVector(camRight, -(r.driftSlip || 0) * 2.8);
+      const targetLook = r.worldPos.clone()
+        .addScaledVector(camForward, 17)
+        .addScaledVector(f.up, 1.7);
+
+      posVec.lerp(targetPos, Math.min(1, dt * 9.5));
+      lookVec.lerp(targetLook, Math.min(1, dt * 12));
+
+      const isCorkscrew = Boolean(currentCourse && currentCourse.corkscrewTwistZones && currentCourse.corkscrewTwistZones.length);
+      const isInvertedSeg = f.up.y < 0.2;
+      const targetUp = (isCorkscrew || isInvertedSeg || (currentCourse && currentCourse.useParallelTransport && f.up.y < 0.85)) ? f.up : worldUp;
+      const cosUp = THREE.MathUtils.clamp(upVec.dot(targetUp), -1, 1);
+      const upAng = Math.acos(cosUp);
+      if (upAng > 1e-4) {
+        const rotAxis = new THREE.Vector3().crossVectors(upVec, targetUp);
+        if (rotAxis.lengthSq() > 1e-8) rotAxis.normalize();
+        else rotAxis.copy(f.tan);
+        upVec.applyAxisAngle(rotAxis, upAng * Math.min(1, dt * (isCorkscrew ? 11.5 : 8.5))).normalize();
+      }
+      camObj.up.copy(upVec);
+      camObj.position.copy(posVec);
+
+      let shakeVal = isP2 ? cameraShakeP2 : cameraShake;
+      if (shakeVal > 0.005) {
+        const shakeAmp = shakeVal * (prefersReducedMotion ? 0.18 : 1.0);
+        camObj.position.x += (Math.random() - 0.5) * 1.4 * shakeAmp;
+        camObj.position.y += (Math.random() - 0.5) * 1.2 * shakeAmp;
+        camObj.position.z += (Math.random() - 0.5) * 1.4 * shakeAmp;
+        shakeVal = Math.max(0, shakeVal - dt * 2.6);
+        if (isP2) cameraShakeP2 = shakeVal;
+        else cameraShake = shakeVal;
+      }
+
+      const targetFov = boosting ? 80 : (64 + Math.max(0, r.speed / 56) * 7);
+      camObj.fov = THREE.MathUtils.lerp(camObj.fov, targetFov, Math.min(1, dt * 6));
+      camObj.updateProjectionMatrix();
+      camObj.lookAt(lookVec);
     }
 
     function updateCamera(dt, elapsed) {
@@ -16410,25 +17357,24 @@
         camUpCurrent.lerp(worldUp, Math.min(1, dt * 8)).normalize();
         camera.up.copy(camUpCurrent);
         if (menuStep === 'car') {
-          // Live 3D Garage Showroom turntable scaled cleanly for every vehicle size (from sleek F1 to 1.32x Omega War-Rig!)
+          const showRacer = garageActiveSlot === 1 ? racers[1] : player;
           const orbitSpeed = prefersReducedMotion ? 0 : 0.55;
           const angle = 0.65 + elapsed * orbitSpeed;
-          const sc = player.stats?.scale || 1.0;
+          const sc = showRacer.stats?.scale || 1.0;
           const orbitR = 7.8 * Math.max(1.0, sc * 1.06);
-          const f = sampleTrack(player.u);
+          const f = sampleTrack(showRacer.u);
           const camOffset = new THREE.Vector3()
             .addScaledVector(f.tan, Math.cos(angle) * orbitR)
             .addScaledVector(f.right, Math.sin(angle) * orbitR)
             .addScaledVector(f.up, 2.55 * Math.max(1.0, sc));
-          const targetCamPos = player.worldPos.clone().add(camOffset);
-          const targetLook = player.worldPos.clone().addScaledVector(f.up, -0.35 + (sc - 1.0) * 1.4);
+          const targetCamPos = showRacer.worldPos.clone().add(camOffset);
+          const targetLook = showRacer.worldPos.clone().addScaledVector(f.up, -0.35 + (sc - 1.0) * 1.4);
           camera.position.lerp(targetCamPos, Math.min(1, dt * 7));
           camera.lookAt(targetLook);
           camera.fov = THREE.MathUtils.lerp(camera.fov, 48, Math.min(1, dt * 6));
           camera.updateProjectionMatrix();
           return;
         }
-        // Dramatic sweeping comic-cover showcase orbit over the selected course!
         const angle = elapsed * 0.14;
         const focus = sampleTrack((elapsed * 0.025) % 1);
         camera.position.set(
@@ -16442,162 +17388,11 @@
         return;
       }
 
-      // Silky 180° cinematic chase-camera orbit smoothly matching the player's 180° Rift Flip!
-      const pDir = player.dir || 1;
-      if (player.riftFlipTimer > 0) {
-        const f = sampleDirectedTrack(player.u, pDir);
-        const ang = player.riftFlipOrbitAngle;
-        const rotFwd = f.tan.clone().multiplyScalar(Math.cos(ang))
-          .addScaledVector(f.right, -Math.sin(ang)).normalize();
-        const orbitPos = player.worldPos.clone()
-          .addScaledVector(rotFwd, -13.5)
-          .addScaledVector(f.up, 5.8);
-        const orbitLook = player.worldPos.clone()
-          .addScaledVector(rotFwd, 15)
-          .addScaledVector(f.up, 1.7);
-        camPosCurrent.copy(orbitPos);
-        camLookCurrent.copy(orbitLook);
-        camera.position.copy(camPosCurrent);
-        camera.lookAt(camLookCurrent);
-        return;
+      const primary = getLocalPrimaryRacer();
+      updateChaseCameraFor(primary, camPosCurrent, camLookCurrent, camUpCurrent, camera, dt, false);
+      if (isLocal2P()) {
+        updateChaseCameraFor(racers[1], camP2State.pos, camP2State.look, camP2State.up, cameraP2, dt, true);
       }
-
-      if (player.recoveryState === 'airborne') {
-        // Dynamic gravity-drop camera aligned to player.airUp (works seamlessly both upright AND upside-down!)
-        const airUp = (player.airUp && player.airUp.lengthSq() > 0.5) ? player.airUp : worldUp;
-        const hFwd = player.fallVel.clone().addScaledVector(airUp, -player.fallVel.dot(airUp));
-        if (hFwd.lengthSq() > 0.25) hFwd.normalize();
-        else hFwd.copy(sampleDirectedTrack(player.u, pDir).tan);
-        const airCamPos = player.worldPos.clone()
-          .addScaledVector(hFwd, -13.5)
-          .addScaledVector(airUp, 7.6);
-        const airLook = player.worldPos.clone()
-          .addScaledVector(hFwd, 11)
-          .addScaledVector(airUp, -2.4);
-        camPosCurrent.lerp(airCamPos, Math.min(1, dt * 7.5));
-        camLookCurrent.lerp(airLook, Math.min(1, dt * 9.5));
-        const cosA = THREE.MathUtils.clamp(camUpCurrent.dot(airUp), -1, 1);
-        const angA = Math.acos(cosA);
-        if (angA > 1e-4) {
-          const axA = new THREE.Vector3().crossVectors(camUpCurrent, airUp);
-          if (axA.lengthSq() > 1e-8) axA.normalize();
-          else axA.copy(hFwd);
-          camUpCurrent.applyAxisAngle(axA, angA * Math.min(1, dt * 8.5)).normalize();
-        }
-        camera.up.copy(camUpCurrent);
-        camera.position.copy(camPosCurrent);
-        camera.lookAt(camLookCurrent);
-        return;
-      } else if (player.recoveryState === 'falling') {
-        camLookCurrent.lerp(player.worldPos, Math.min(1, dt * 9));
-        camera.position.copy(camPosCurrent);
-        camera.lookAt(camLookCurrent);
-        return;
-      } else if (player.recoveryState === 'rescuing') {
-        const tf = sampleDirectedTrack(player.rescueTargetU, pDir);
-        const rescueCamPos = player.worldPos.clone()
-          .addScaledVector(tf.tan, -16)
-          .addScaledVector(tf.up, 7.5);
-        camPosCurrent.lerp(rescueCamPos, Math.min(1, dt * 6));
-        camLookCurrent.lerp(player.worldPos, Math.min(1, dt * 9));
-        const cosR = THREE.MathUtils.clamp(camUpCurrent.dot(tf.up), -1, 1);
-        const angR = Math.acos(cosR);
-        if (angR > 1e-4) {
-          const axR = new THREE.Vector3().crossVectors(camUpCurrent, tf.up);
-          if (axR.lengthSq() > 1e-8) axR.normalize();
-          else axR.copy(tf.tan);
-          camUpCurrent.applyAxisAngle(axR, angR * Math.min(1, dt * 8.5)).normalize();
-        }
-        camera.up.copy(camUpCurrent);
-        camera.position.copy(camPosCurrent);
-        camera.lookAt(camLookCurrent);
-        return;
-      } else if (player.activeJumpDeckIdx >= 0 && courseFeatures.jumpDecks[player.activeJumpDeckIdx]) {
-        const jf = sampleJumpDeckFrame(player.activeJumpDeckIdx, player.jdU);
-        const jdFwd = jf.tan.clone().multiplyScalar(Math.cos(player.relYaw))
-          .addScaledVector(jf.right, Math.sin(player.relYaw)).normalize();
-        const jdCamPos = player.worldPos.clone().addScaledVector(jdFwd, -12.8).addScaledVector(jf.up, 5.2);
-        const jdLook = player.worldPos.clone().addScaledVector(jdFwd, 18).addScaledVector(jf.up, 1.5);
-        camPosCurrent.lerp(jdCamPos, Math.min(1, dt * 10));
-        camLookCurrent.lerp(jdLook, Math.min(1, dt * 12));
-        camUpCurrent.lerp(worldUp, Math.min(1, dt * 8)).normalize();
-        camera.up.copy(camUpCurrent);
-        camera.position.copy(camPosCurrent);
-        if (cameraShake > 0.005) cameraShake = Math.max(0, cameraShake - dt * 2.6);
-        const jdBoost = player.isBoosting || player.padBoostTimer > 0 || player.miniTurboTimer > 0 || player.superOverdriveTimer > 0;
-        camera.fov = THREE.MathUtils.lerp(camera.fov, jdBoost ? 79 : 68, Math.min(1, dt * 6));
-        camera.updateProjectionMatrix();
-        camera.lookAt(camLookCurrent);
-        return;
-      } else if (player.onShortcut && shortcutTracks.length) {
-        const sf = sampleShortcutFrame(player.scU, player.scDir, player.activeShortcutIdx || 0);
-        const scFwd = sf.tan.clone().multiplyScalar(Math.cos(player.relYaw))
-          .addScaledVector(sf.right, Math.sin(player.relYaw)).normalize();
-        const scCamPos = player.worldPos.clone().addScaledVector(scFwd, -12.8).addScaledVector(sf.up, 4.9);
-        const scLook = player.worldPos.clone().addScaledVector(scFwd, 18).addScaledVector(sf.up, 1.5);
-        camPosCurrent.lerp(scCamPos, Math.min(1, dt * 10));
-        camLookCurrent.lerp(scLook, Math.min(1, dt * 12));
-        camUpCurrent.lerp(worldUp, Math.min(1, dt * 8)).normalize();
-        camera.up.copy(camUpCurrent);
-        camera.position.copy(camPosCurrent);
-        if (cameraShake > 0.005) cameraShake = Math.max(0, cameraShake - dt * 2.6);
-        const scBoost = player.isBoosting || player.padBoostTimer > 0 || player.miniTurboTimer > 0 || player.superOverdriveTimer > 0;
-        camera.fov = THREE.MathUtils.lerp(camera.fov, scBoost ? 79 : 69, Math.min(1, dt * 6));
-        camera.updateProjectionMatrix();
-        camera.lookAt(camLookCurrent);
-        return;
-      }
-
-      const f = sampleDirectedTrack(player.u, pDir);
-      const boosting = player.isBoosting || player.padBoostTimer > 0 || player.miniTurboTimer > 0 || player.phantomTimer > 0 || player.superOverdriveTimer > 0;
-      const distBack = boosting ? 14.0 : 12.0;
-      const heightUp = boosting ? 4.7 : 5.3;
-
-      camHeadingYaw = THREE.MathUtils.lerp(camHeadingYaw, player.relYaw || 0, Math.min(1, dt * 6.5));
-      const camForward = f.tan.clone().multiplyScalar(Math.cos(camHeadingYaw))
-        .addScaledVector(f.right, Math.sin(camHeadingYaw)).normalize();
-      const camRight = f.right.clone().multiplyScalar(Math.cos(camHeadingYaw))
-        .addScaledVector(f.tan, -Math.sin(camHeadingYaw)).normalize();
-
-      const targetPos = player.worldPos.clone()
-        .addScaledVector(camForward, -distBack)
-        .addScaledVector(f.up, heightUp)
-        .addScaledVector(camRight, -(player.driftSlip || 0) * 2.8);
-
-      const targetLook = player.worldPos.clone()
-        .addScaledVector(camForward, 17)
-        .addScaledVector(f.up, 1.7);
-
-      camPosCurrent.lerp(targetPos, Math.min(1, dt * 9.5));
-      camLookCurrent.lerp(targetLook, Math.min(1, dt * 12));
-      // Smoothly roll camera.up along f.up inside 360° vertical loops, Wormhole corkscrews, AND Galactic Warpway Upside-Down segments!
-      const isCorkscrew = Boolean(currentCourse && currentCourse.corkscrewTwistZones && currentCourse.corkscrewTwistZones.length);
-      const isInvertedSeg = f.up.y < 0.2;
-      const targetUp = (isCorkscrew || isInvertedSeg || (currentCourse && currentCourse.useParallelTransport && f.up.y < 0.85)) ? f.up : worldUp;
-      const cosUp = THREE.MathUtils.clamp(camUpCurrent.dot(targetUp), -1, 1);
-      const upAng = Math.acos(cosUp);
-      if (upAng > 1e-4) {
-        const rotAxis = new THREE.Vector3().crossVectors(camUpCurrent, targetUp);
-        if (rotAxis.lengthSq() > 1e-8) rotAxis.normalize();
-        else rotAxis.copy(f.tan);
-        camUpCurrent.applyAxisAngle(rotAxis, upAng * Math.min(1, dt * (isCorkscrew ? 11.5 : 8.5))).normalize();
-      }
-      camera.up.copy(camUpCurrent);
-
-      camera.position.copy(camPosCurrent);
-
-      if (cameraShake > 0.005) {
-        const shakeAmp = cameraShake * (prefersReducedMotion ? 0.18 : 1.0);
-        camera.position.x += (Math.random() - 0.5) * 1.4 * shakeAmp;
-        camera.position.y += (Math.random() - 0.5) * 1.2 * shakeAmp;
-        camera.position.z += (Math.random() - 0.5) * 1.4 * shakeAmp;
-        cameraShake = Math.max(0, cameraShake - dt * 2.6);
-      }
-
-      const targetFov = boosting ? 80 : (64 + Math.max(0, player.speed / 56) * 7);
-      camera.fov = THREE.MathUtils.lerp(camera.fov, targetFov, Math.min(1, dt * 6));
-      camera.updateProjectionMatrix();
-      camera.lookAt(camLookCurrent);
     }
 
     // =========================================================================
@@ -16605,27 +17400,29 @@
     // =========================================================================
     function updateHUD(dt) {
       const sorted = getSortedRacers();
-      const place = sorted.findIndex((r) => r.isPlayer) + 1;
+      const primary = getLocalPrimaryRacer();
+      const place = sorted.findIndex((r) => r === primary) + 1;
 
-      hudLapEl.textContent = `LAP ${player.lap} OF ${TOTAL_LAPS}`;
+      hudLapEl.textContent = isLocal2P() ? '2P SPLIT' : `LAP ${primary.lap} OF ${TOTAL_LAPS}`;
+      if (p1SplitTagEl) p1SplitTagEl.textContent = `P1 • LAP ${racers[0].lap}/${TOTAL_LAPS}`;
       hudTimerEl.textContent = formatTime(raceElapsed);
       hudPlaceEl.textContent = ordinal(place);
-      hudSpeedEl.textContent = Math.max(0, Math.round(player.speed * 3.0));
+      hudSpeedEl.textContent = Math.max(0, Math.round(primary.speed * 3.0));
 
       // Update segmented Red-and-Yellow Nitro Gauge
-      const nitroPct = Math.round(player.nitro);
+      const nitroPct = Math.round(primary.nitro);
       nitroSegmentsEl.setAttribute('aria-valuenow', String(nitroPct));
-      const litCount = Math.round((player.nitro / 100) * 10);
-      const boosting = player.isBoosting || player.padBoostTimer > 0 || player.miniTurboTimer > 0 || player.superOverdriveTimer > 0;
+      const litCount = Math.round((primary.nitro / 100) * 10);
+      const boosting = primary.isBoosting || primary.padBoostTimer > 0 || primary.miniTurboTimer > 0 || primary.superOverdriveTimer > 0;
 
       // Update Mario Kart 3-Tier Drift Pill + Live Charge Meter!
-      if (player.isDrifting) {
-        const pct = Math.min(100, Math.round((player.driftCharge / 2.45) * 100));
+      if (primary.isDrifting) {
+        const pct = Math.min(100, Math.round((primary.driftCharge / 2.45) * 100));
         driftMeterFillEl.style.width = `${pct}%`;
-        if (player.driftTier > 0) {
+        if (primary.driftTier > 0) {
           const labels = ['', 'MINI-TURBO! (RELEASE)', 'SUPER TURBO!! (RELEASE)', 'ULTRA KIRBY TURBO!!!'];
-          driftTierLabelEl.textContent = labels[player.driftTier];
-          driftTierPillEl.className = `drift-tier-pill active tier-${player.driftTier}`;
+          driftTierLabelEl.textContent = labels[primary.driftTier];
+          driftTierPillEl.className = `drift-tier-pill active tier-${primary.driftTier}`;
         } else {
           driftTierLabelEl.textContent = 'CHARGING DRIFT...';
           driftTierPillEl.className = 'drift-tier-pill active';
@@ -16644,13 +17441,13 @@
         }
       });
 
-      if (player.isDrifting) {
+      if (primary.isDrifting) {
         nitroStatusEl.textContent = 'CHARGING 1:1';
         nitroStatusEl.className = 'nitro-status';
       } else if (boosting) {
         nitroStatusEl.textContent = 'BLASTING!';
         nitroStatusEl.className = 'nitro-status ready';
-      } else if (player.nitro >= 15) {
+      } else if (primary.nitro >= 15) {
         nitroStatusEl.textContent = 'READY! [SHIFT]';
         nitroStatusEl.className = 'nitro-status ready';
       } else {
@@ -16663,10 +17460,10 @@
         captionResetTimer -= dt;
       } else if (gameState === 'racing') {
         if (place === 1 && lastAnnouncedPlace !== 1) {
-          setCaption('MEANWHILE...', `${player.name.replace(' (YOU)', '')} TAKES THE LEAD!`, 3.2);
+          setCaption('MEANWHILE...', `${primary.name.replace(' (YOU)', '')} TAKES THE LEAD!`, 3.2);
         } else if (place > lastAnnouncedPlace) {
           setCaption('WATCH OUT!', 'A RIVAL ROCKET-CAR JUST PULLED AHEAD!', 3.2);
-        } else if (player.nitro > 85) {
+        } else if (primary.nitro > 85) {
           setCaption('FULL CHARGE!', 'HIT SHIFT TO UNLEASH THE KIRBY NITRO!', 3.0);
         }
         lastAnnouncedPlace = place;
@@ -16681,20 +17478,71 @@
 
       // Update Tier Apex / Super Car Special Ability HUD Button [Q]!
       if (superAbilityBtnEl) {
-        if (player.abilityType) {
+        if (primary.abilityType) {
           superAbilityBtnEl.hidden = false;
-          if (superAbilityIconEl) superAbilityIconEl.textContent = player.abilityIcon || '✦';
-          const activeTimer = Math.max(player.superOverdriveTimer || 0, player.glideTimer || 0);
+          if (superAbilityIconEl) superAbilityIconEl.textContent = primary.abilityIcon || '✦';
+          const activeTimer = Math.max(primary.superOverdriveTimer || 0, primary.glideTimer || 0);
           const active = activeTimer > 0;
-          const dur = player.abilityDuration || 2.2;
-          const pct = active ? Math.round((activeTimer / dur) * 100) : Math.round(player.superCharge || 0);
+          const dur = primary.abilityDuration || 2.2;
+          const pct = active ? Math.round((activeTimer / dur) * 100) : Math.round(primary.superCharge || 0);
           const ready = !active && pct >= 100;
           superAbilityBtnEl.className = `super-ability-btn${active ? ' active' : (ready ? ' ready' : '')}`;
           if (superAbilityFillEl) superAbilityFillEl.style.width = `${Math.min(100, Math.max(0, pct))}%`;
           if (superAbilityKickerEl) superAbilityKickerEl.textContent = active ? 'ABILITY ACTIVE!' : (ready ? 'READY! PRESS [Q]' : `CHARGING ${pct}%`);
-          if (superAbilityNameEl) superAbilityNameEl.textContent = player.abilityName || 'SPECIAL';
+          if (superAbilityNameEl) superAbilityNameEl.textContent = primary.abilityName || 'SPECIAL';
         } else {
           superAbilityBtnEl.hidden = true;
+        }
+      }
+
+      // Update Player 2 Split-Screen Telemetry HUD!
+      if (isLocal2P()) {
+        const p2 = racers[1];
+        const p2Place = sorted.findIndex((r) => r === p2) + 1;
+        if (p2SplitTagEl) p2SplitTagEl.textContent = `P2 • LAP ${p2.lap}/${TOTAL_LAPS}`;
+        if (p2HudPlaceEl) p2HudPlaceEl.textContent = ordinal(p2Place);
+        if (p2HudSpeedEl) p2HudSpeedEl.textContent = Math.max(0, Math.round(p2.speed * 3.0));
+        const p2Boost = p2.isBoosting || p2.padBoostTimer > 0 || p2.miniTurboTimer > 0 || p2.superOverdriveTimer > 0;
+        const p2Lit = Math.round((p2.nitro / 100) * 10);
+        p2NitroSegNodes.forEach((seg, i) => {
+          seg.className = 'nitro-seg';
+          if (i < p2Lit) {
+            if (p2Boost) seg.classList.add('lit-boost');
+            else if (i < 5) seg.classList.add('lit-red');
+            else seg.classList.add('lit-yellow');
+          }
+        });
+        if (p2NitroStatusEl) {
+          p2NitroStatusEl.textContent = p2.isDrifting ? 'CHARGING 1:1' : (p2Boost ? 'BLASTING!' : (p2.nitro >= 15 ? 'READY! [ENTER]' : 'DRIFT TO CHARGE'));
+          p2NitroStatusEl.className = `nitro-status${(p2Boost || p2.nitro >= 15) ? ' ready' : ''}`;
+        }
+        if (p2DriftTierPillEl && p2DriftMeterFillEl && p2DriftTierLabelEl) {
+          if (p2.isDrifting) {
+            p2DriftMeterFillEl.style.width = `${Math.min(100, Math.round((p2.driftCharge / 2.45) * 100))}%`;
+            const labels = ['', 'MINI-TURBO!', 'SUPER TURBO!!', 'ULTRA TURBO!!!'];
+            p2DriftTierLabelEl.textContent = p2.driftTier > 0 ? labels[p2.driftTier] : 'CHARGING DRIFT...';
+            p2DriftTierPillEl.className = `drift-tier-pill active${p2.driftTier > 0 ? ' tier-' + p2.driftTier : ''}`;
+          } else {
+            p2DriftTierPillEl.className = 'drift-tier-pill';
+            p2DriftMeterFillEl.style.width = '0%';
+          }
+        }
+        if (p2SuperAbilityBtnEl) {
+          if (p2.abilityType) {
+            p2SuperAbilityBtnEl.hidden = false;
+            if (p2SuperAbilityIconEl) p2SuperAbilityIconEl.textContent = p2.abilityIcon || '✦';
+            const aT = Math.max(p2.superOverdriveTimer || 0, p2.glideTimer || 0);
+            const act = aT > 0;
+            const dur = p2.abilityDuration || 2.2;
+            const pct = act ? Math.round((aT / dur) * 100) : Math.round(p2.superCharge || 0);
+            const rdy = !act && pct >= 100;
+            p2SuperAbilityBtnEl.className = `super-ability-btn${act ? ' active' : (rdy ? ' ready' : '')}`;
+            if (p2SuperAbilityFillEl) p2SuperAbilityFillEl.style.width = `${Math.min(100, Math.max(0, pct))}%`;
+            if (p2SuperAbilityKickerEl) p2SuperAbilityKickerEl.textContent = act ? 'ACTIVE!' : (rdy ? 'READY! [;]' : `${pct}%`);
+            if (p2SuperAbilityNameEl) p2SuperAbilityNameEl.textContent = p2.abilityName || 'SPECIAL';
+          } else {
+            p2SuperAbilityBtnEl.hidden = true;
+          }
         }
       }
 
@@ -16777,29 +17625,415 @@
     }
 
     // =========================================================================
+    // 16B. ONLINE 2-PLAYER ROOM-CODE MULTIPLAYER (ZERO-BACKEND WEBRTC / PEERJS)
+    // =========================================================================
+    const PEER_PREFIX = 'ar-gp-room-';
+
+    function setOnlineStatus(msg, isConnected = false) {
+      if (!onlineStatusPillEl) return;
+      onlineStatusPillEl.textContent = msg;
+      onlineStatusPillEl.classList.toggle('connected', isConnected);
+      updateStartButtonLabel();
+    }
+
+    function sendOnlineMsg(payload) {
+      if (online.conn && online.conn.open) {
+        try { online.conn.send(payload); } catch (_) {}
+      }
+    }
+
+    function sendOnlineLobbyState() {
+      if (online.role !== 'host' || !online.connected) return;
+      sendOnlineMsg({
+        type: 'lobbyState',
+        raceMode,
+        selectedGpIdx,
+        courseIdx: currentCourseIdx,
+        p1CarIdx: selectedCarIdx,
+        p2CarIdx: selectedCarIdxP2
+      });
+    }
+
+    function sendOnlineStartRace() {
+      if (online.role !== 'host' || !online.connected) return;
+      sendOnlineMsg({
+        type: 'startRace',
+        raceMode,
+        gpActive: gpSession.active,
+        gpIdx: gpSession.gpIdx,
+        raceIdx: gpSession.raceIdx,
+        courseIdx: currentCourseIdx,
+        p1CarIdx: selectedCarIdx,
+        p2CarIdx: selectedCarIdxP2
+      });
+    }
+
+    function packRacerState(r) {
+      return [
+        +r.u.toFixed(5),
+        +r.lat.toFixed(3),
+        +r.speed.toFixed(2),
+        +(r.relYaw || 0).toFixed(3),
+        +(r.driftSlip || 0).toFixed(3),
+        +(r.steerAngle || 0).toFixed(2),
+        +(r.deckElev || 0).toFixed(2),
+        r.lap || 1,
+        +(r.totalProgress || 0).toFixed(4),
+        r.dir || 1,
+        r.recoveryState === 'none' ? 0 : (r.recoveryState === 'airborne' ? 1 : (r.recoveryState === 'falling' ? 2 : 3)),
+        r.onShortcut ? (r.activeShortcutIdx + 1) : 0,
+        +(r.scU || 0).toFixed(4),
+        +(r.scLat || 0).toFixed(2),
+        r.activeJumpDeckIdx >= 0 ? (r.activeJumpDeckIdx + 1) : 0,
+        +(r.jdU || 0).toFixed(4),
+        +(r.jdLat || 0).toFixed(2),
+        +(r.hopHeight || 0).toFixed(2),
+        +(r.shieldTimer || 0).toFixed(2),
+        +(r.frozenTimer || 0).toFixed(2),
+        +(r.spinTimer || 0).toFixed(2),
+        +(r.phantomTimer || 0).toFixed(2),
+        +(r.superOverdriveTimer || 0).toFixed(2),
+        +(r.glideTimer || 0).toFixed(2),
+        (r.isBoosting ? 1 : 0) | (r.isDrifting ? 2 : 0) | ((r.driftTier || 0) << 2) | (r.finished ? 16 : 0),
+        +(r.finishTime || 0).toFixed(2),
+        +(r.worldPos.x || 0).toFixed(2),
+        +(r.worldPos.y || 0).toFixed(2),
+        +(r.worldPos.z || 0).toFixed(2)
+      ];
+    }
+
+    function applyRemoteRacerSnapshot(r, snap, dt) {
+      if (!snap || snap.length < 26) return;
+      const [u, lat, spd, yaw, slip, steer, elev, lap, prog, dir, recCode, scCode, scU, scLat, jdCode, jdU, jdLat, hopH, shT, frT, spT, phT, suT, glT, flags, finT, wx, wy, wz] = snap;
+      const prevU = r.u;
+      r.prevU = prevU;
+      r.prevLat = r.lat;
+      if (r.prevWorldPos) r.prevWorldPos.copy(r.worldPos);
+
+      // Smooth wrap-aware u interpolation (never lerp across portal jumps!)
+      let du = u - r.u;
+      const isSeg = Boolean(currentCourse && currentCourse.segments && currentCourse.segments.length > 1);
+      if (!isSeg) {
+        if (du > 0.5) du -= 1;
+        if (du < -0.5) du += 1;
+      }
+      if (Math.abs(du) > 0.08) r.u = u;
+      else r.u = ((r.u + du * Math.min(1, dt * 16)) % 1 + 1) % 1;
+
+      r.lat = THREE.MathUtils.lerp(r.lat, lat, Math.min(1, dt * 16));
+      r.speed = THREE.MathUtils.lerp(r.speed, spd, Math.min(1, dt * 14));
+      r.relYaw = THREE.MathUtils.lerp(r.relYaw || 0, yaw, Math.min(1, dt * 14));
+      r.driftSlip = THREE.MathUtils.lerp(r.driftSlip || 0, slip, Math.min(1, dt * 14));
+      r.steerAngle = steer;
+      r.deckElev = elev;
+      r.lap = lap;
+      r.totalProgress = prog;
+      r.dir = dir;
+      r.recoveryState = recCode === 0 ? 'none' : (recCode === 1 ? 'airborne' : (recCode === 2 ? 'falling' : 'rescuing'));
+      r.onShortcut = scCode > 0;
+      if (r.onShortcut) {
+        r.activeShortcutIdx = scCode - 1;
+        r.scU = scU;
+        r.scLat = scLat;
+      }
+      r.activeJumpDeckIdx = jdCode > 0 ? (jdCode - 1) : -1;
+      if (r.activeJumpDeckIdx >= 0) {
+        r.jdU = jdU;
+        r.jdLat = jdLat;
+      }
+      r.hopHeight = hopH;
+      r.shieldTimer = shT;
+      r.frozenTimer = frT;
+      r.spinTimer = spT;
+      if (spT > 0) r.spinAngle += dt * Math.PI * 3.8;
+      else r.spinAngle = 0;
+      r.phantomTimer = phT;
+      r.superOverdriveTimer = suT;
+      r.glideTimer = glT;
+      r.isBoosting = Boolean(flags & 1);
+      r.isDrifting = Boolean(flags & 2);
+      r.driftTier = (flags >> 2) & 3;
+      if (Boolean(flags & 16) && !r.finished) {
+        r.finished = true;
+        r.finishTime = finT || raceElapsed;
+      }
+
+      if (r.recoveryState !== 'none' && Number.isFinite(wx)) {
+        r.worldPos.lerp(new THREE.Vector3(wx, wy, wz), Math.min(1, dt * 16));
+        r.visual.root.position.copy(r.worldPos);
+        syncRacerStatusVisuals(r, dt);
+      } else if (r.activeJumpDeckIdx >= 0 && courseFeatures.jumpDecks[r.activeJumpDeckIdx]) {
+        const jf = sampleJumpDeckFrame(r.activeJumpDeckIdx, THREE.MathUtils.clamp(r.jdU, 0, 1));
+        r.worldPos.copy(jf.pos).addScaledVector(jf.right, r.jdLat).addScaledVector(jf.up, 0.12 + (r.stats?.hoverHeight || 0) + r.hopHeight);
+        r.visual.root.position.copy(r.worldPos);
+        r.visual.root.quaternion.copy(makeTrackQuaternion(jf));
+        syncRacerStatusVisuals(r, dt);
+      } else if (r.onShortcut && shortcutTracks.length) {
+        const sf = sampleShortcutFrame(THREE.MathUtils.clamp(r.scU, 0, 1), 1, r.activeShortcutIdx || 0);
+        r.worldPos.copy(sf.pos).addScaledVector(sf.right, r.scLat).addScaledVector(sf.up, 0.14 + (r.stats?.hoverHeight || 0) + r.hopHeight);
+        r.visual.root.position.copy(r.worldPos);
+        r.visual.root.quaternion.copy(makeTrackQuaternion(sf));
+        syncRacerStatusVisuals(r, dt);
+      } else {
+        updateRacerTransform(r, dt);
+      }
+    }
+
+    function handleOnlineData(msg) {
+      if (!msg || typeof msg !== 'object') return;
+      if (msg.type === 'lobbyState' && online.role === 'guest') {
+        if (Number.isInteger(msg.courseIdx) && msg.courseIdx !== currentCourseIdx) {
+          loadCourse(msg.courseIdx);
+        }
+        if (Number.isInteger(msg.p1CarIdx)) {
+          selectedCarIdx = msg.p1CarIdx;
+          const p1S = CAR_SCHEMES[selectedCarIdx];
+          if (p1S) { applyCarLivery(racers[0], p1S, false); racers[0].name = `${p1S.name} (P1)`; }
+        }
+        setOnlineStatus(`✓ CONNECTED TO ROOM ${online.roomCode} — TRACK: ${COURSES[currentCourseIdx]?.mapTitle || 'READY'}! PICK YOUR CAR IN GARAGE!`, true);
+      } else if (msg.type === 'p2Car' && online.role === 'host') {
+        if (Number.isInteger(msg.carIdx)) {
+          selectedCarIdxP2 = msg.carIdx;
+          const p2S = CAR_SCHEMES[selectedCarIdxP2];
+          if (p2S) { applyCarLivery(racers[1], p2S, false); racers[1].name = `${p2S.name} (P2)`; }
+          setOnlineStatus(`✓ PLAYER 2 CONNECTED (${p2S?.name || 'READY'}) — CLICK GARAGE OR RACE!`, true);
+        }
+      } else if (msg.type === 'startRace' && online.role === 'guest') {
+        gpSession.active = Boolean(msg.gpActive);
+        gpSession.gpIdx = msg.gpIdx || 0;
+        gpSession.raceIdx = msg.raceIdx || 0;
+        selectedCarIdx = msg.p1CarIdx || 0;
+        selectedCarIdxP2 = msg.p2CarIdx ?? selectedCarIdxP2;
+        loadCourse(msg.courseIdx || 0);
+        const p1S = CAR_SCHEMES[selectedCarIdx];
+        const p2S = CAR_SCHEMES[selectedCarIdxP2];
+        if (p1S) { applyCarLivery(racers[0], p1S, false); racers[0].name = `${p1S.name} (P1)`; }
+        if (p2S) { applyCarLivery(racers[1], p2S, false); racers[1].name = `${p2S.name} (P2)`; }
+        online.remoteTargets = {};
+        resetRace(gpSession.active && gpSession.raceIdx > 0);
+      } else if (msg.type === 'state') {
+        if (online.role === 'host' && msg.p2) {
+          online.remoteTargets.rival1 = msg.p2;
+        } else if (online.role === 'guest') {
+          if (msg.p1) online.remoteTargets.player = msg.p1;
+          if (msg.ai2) online.remoteTargets.rival2 = msg.ai2;
+          if (msg.ai3) online.remoteTargets.rival3 = msg.ai3;
+          if (Number.isFinite(msg.t) && gameState === 'racing') {
+            raceElapsed = THREE.MathUtils.lerp(raceElapsed, msg.t, 0.25);
+          }
+        }
+      } else if (msg.type === 'event') {
+        if (msg.kind === 'itemBox' && itemBoxes[msg.boxIdx]) {
+          itemBoxes[msg.boxIdx].respawnTimer = 5.5;
+          itemBoxes[msg.boxIdx].pivot.visible = false;
+        } else if (msg.kind === 'powerup' && racers[msg.racerIdx]) {
+          const r = racers[msg.racerIdx];
+          const pDef = POWERUPS.find((x) => x.id === msg.powerId);
+          if (pDef) {
+            r.heldPowerup = { ...pDef, grantedRank: 2 };
+            r.rouletteTimer = 0;
+            activatePowerup(r, true);
+          }
+        } else if (msg.kind === 'ability' && racers[msg.racerIdx]) {
+          activateSuperAbility(racers[msg.racerIdx], true);
+        } else if (msg.kind === 'finish' && racers[msg.racerIdx]) {
+          const rf = racers[msg.racerIdx];
+          rf.finished = true;
+          rf.finishTime = msg.finishTime || raceElapsed;
+          if (racers[0].finished && racers[1].finished && gameState === 'racing') {
+            showFinishScreen();
+          } else if (gameState === 'racing') {
+            splitFinishGraceTimer = 10.0;
+            const who = rf === racers[0] ? 'PLAYER 1' : 'PLAYER 2';
+            showCallout(`${who} FINISHED!`, 1.8);
+          }
+        }
+      }
+    }
+
+    function leaveOnlineRoom(silent = false) {
+      try { if (online.conn) online.conn.close(); } catch (_) {}
+      try { if (online.peer) online.peer.destroy(); } catch (_) {}
+      online.conn = null;
+      online.peer = null;
+      online.role = 'none';
+      online.roomCode = '';
+      online.connected = false;
+      online.remoteTargets = {};
+      if (onlineRoomShareRowEl) onlineRoomShareRowEl.hidden = true;
+      if (btnOnlineLeaveEl) btnOnlineLeaveEl.hidden = true;
+      if (onlineHudBadgeEl) onlineHudBadgeEl.hidden = true;
+      if (!silent) setOnlineStatus("HOST A ROOM OR ENTER A FRIEND'S CODE TO RACE ONLINE (2P + 2 AI)", false);
+    }
+
+    function wireOnlineConn(conn, role) {
+      online.conn = conn;
+      conn.on('open', () => {
+        online.connected = true;
+        if (role === 'host') {
+          setOnlineStatus(`✓ PLAYER 2 JOINED ROOM ${online.roomCode}! PICK TRACK & CLICK GARAGE -> RACE!`, true);
+          sendOnlineLobbyState();
+        } else {
+          setOnlineStatus(`✓ CONNECTED TO ROOM ${online.roomCode}! PICK YOUR CAR IN GARAGE & WAIT FOR HOST!`, true);
+          sendOnlineMsg({ type: 'p2Car', carIdx: selectedCarIdxP2 });
+        }
+      });
+      conn.on('data', handleOnlineData);
+      conn.on('close', () => {
+        const wasRacing = gameState === 'racing' || gameState === 'countdown';
+        online.connected = false;
+        online.conn = null;
+        if (wasRacing) {
+          showItemToast('⚠ PEER DISCONNECTED — AI TAKING OVER REMOTE CAR', '#ffea00', 3.2);
+          if (onlineHudBadgeEl) onlineHudBadgeEl.textContent = 'ONLINE PEER LEFT (AI SUB)';
+        } else {
+          setOnlineStatus('PEER DISCONNECTED — WAITING OR RECONNECTING...', false);
+        }
+      });
+      conn.on('error', () => {
+        setOnlineStatus('CONNECTION ERROR — CHECK CODE & TRY AGAIN', false);
+      });
+    }
+
+    function hostOnlineRoom() {
+      if (typeof window.Peer === 'undefined') {
+        setOnlineStatus('ONLINE ENGINE STILL LOADING — TRY AGAIN IN 1 SECOND', false);
+        return;
+      }
+      leaveOnlineRoom(true);
+      const alphabet = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+      let code = '';
+      for (let i = 0; i < 5; i++) code += alphabet[Math.floor(Math.random() * alphabet.length)];
+      online.role = 'host';
+      online.roomCode = code;
+      if (onlineRoomCodeEl) onlineRoomCodeEl.textContent = code;
+      if (onlineRoomShareRowEl) onlineRoomShareRowEl.hidden = false;
+      if (btnOnlineLeaveEl) btnOnlineLeaveEl.hidden = false;
+      setOnlineStatus(`OPENING ROOM ${code}...`, false);
+
+      const peer = new window.Peer(PEER_PREFIX + code, { debug: 0 });
+      online.peer = peer;
+      peer.on('open', () => {
+        setOnlineStatus(`ROOM ${code} LIVE! SHARE THE INVITE LINK WITH PLAYER 2`, false);
+      });
+      peer.on('connection', (conn) => {
+        if (online.conn && online.conn.open) { conn.close(); return; }
+        wireOnlineConn(conn, 'host');
+      });
+      peer.on('error', (err) => {
+        setOnlineStatus(`ROOM ERROR (${err?.type || 'NETWORK'}) — CLICK HOST AGAIN`, false);
+      });
+    }
+
+    function joinOnlineRoom(rawCode) {
+      const code = String(rawCode || '').trim().toUpperCase().replace(/[^A-Z0-9]/g, '');
+      if (code.length < 4) {
+        setOnlineStatus('ENTER A VALID 5-CHARACTER ROOM CODE!', false);
+        return;
+      }
+      if (typeof window.Peer === 'undefined') {
+        setOnlineStatus('ONLINE ENGINE STILL LOADING — TRY AGAIN IN 1 SECOND', false);
+        return;
+      }
+      leaveOnlineRoom(true);
+      online.role = 'guest';
+      online.roomCode = code;
+      if (onlineRoomInputEl) onlineRoomInputEl.value = code;
+      if (btnOnlineLeaveEl) btnOnlineLeaveEl.hidden = false;
+      setOnlineStatus(`CONNECTING TO ROOM ${code}...`, false);
+
+      const peer = new window.Peer(undefined, { debug: 0 });
+      online.peer = peer;
+      peer.on('open', () => {
+        const conn = peer.connect(PEER_PREFIX + code, { reliable: false });
+        wireOnlineConn(conn, 'guest');
+      });
+      peer.on('error', (err) => {
+        setOnlineStatus(`COULD NOT JOIN ${code} (${err?.type || 'OFFLINE'}) — CHECK CODE`, false);
+      });
+    }
+
+    function setMultiplayerMode(mode) {
+      mpMode = mode;
+      if (tabMp1pEl) tabMp1pEl.setAttribute('aria-pressed', String(mode === '1p'));
+      if (tabMpLocal2pEl) tabMpLocal2pEl.setAttribute('aria-pressed', String(mode === 'local2p'));
+      if (tabMpOnline2pEl) tabMpOnline2pEl.setAttribute('aria-pressed', String(mode === 'online2p'));
+      if (onlineLobbyBoxEl) onlineLobbyBoxEl.hidden = mode !== 'online2p';
+      if (mode !== 'online2p' && online.role !== 'none') leaveOnlineRoom(true);
+      if (mode === 'local2p') {
+        garageActiveSlot = 0;
+        assignRivalCarsForEvent();
+      } else if (mode === '1p') {
+        garageActiveSlot = 0;
+        assignRivalCarsForEvent();
+      }
+      updateStartButtonLabel();
+    }
+
+    tabMp1pEl?.addEventListener('click', () => setMultiplayerMode('1p'));
+    tabMpLocal2pEl?.addEventListener('click', () => setMultiplayerMode('local2p'));
+    tabMpOnline2pEl?.addEventListener('click', () => setMultiplayerMode('online2p'));
+    btnOnlineHostEl?.addEventListener('click', hostOnlineRoom);
+    btnOnlineJoinEl?.addEventListener('click', () => joinOnlineRoom(onlineRoomInputEl?.value));
+    btnOnlineLeaveEl?.addEventListener('click', () => leaveOnlineRoom(false));
+    btnCopyInviteEl?.addEventListener('click', async () => {
+      if (!online.roomCode) return;
+      const url = new URL(window.location.href);
+      url.searchParams.set('room', online.roomCode);
+      try {
+        await navigator.clipboard.writeText(url.toString());
+        btnCopyInviteEl.textContent = '✓ LINK COPIED!';
+        setTimeout(() => { btnCopyInviteEl.textContent = '📋 COPY INVITE LINK'; }, 2200);
+      } catch (_) {
+        window.prompt('Share this link with Player 2:', url.toString());
+      }
+    });
+    p2GarageTabsEl?.querySelectorAll('.p2-slot-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        garageActiveSlot = Number(btn.dataset.slot);
+        const targetIdx = garageActiveSlot === 1 ? selectedCarIdxP2 : selectedCarIdx;
+        selectedCarTierTab = CAR_SCHEMES[targetIdx]?.tier || 0;
+        const showRacer = garageActiveSlot === 1 ? racers[1] : player;
+        showRacer.u = (currentCourse && currentCourse.finishU) ? currentCourse.finishU : 0.012;
+        showRacer.lat = 0;
+        showRacer.relYaw = 0;
+        updateRacerTransform(showRacer, 0.016);
+        syncP2GarageTabsUI();
+        renderCarPicker();
+      });
+    });
+
+    // =========================================================================
     // 17. MAIN ANIMATION LOOP & RESIZE HANDLER
     // =========================================================================
     function handleResize() {
       const w = window.innerWidth;
       const h = window.innerHeight;
-      camera.aspect = w / h;
-      camera.updateProjectionMatrix();
       renderer.setSize(w, h);
       composer.setSize(w, h);
       speedCanvas.width = w;
       speedCanvas.height = h;
+      updateCameraAspects();
     }
     window.addEventListener('resize', handleResize);
     handleResize();
 
     // Initialize Grand Prix menu, 13-vehicle garage showroom, and launch cleanly on the simplified Title screen!
-    selectPlayerCarScheme(0, false);
+    selectPlayerCarScheme(0, false, 0);
     loadCourse(0);
     setRaceMode('gp');
     racers.forEach((r) => updateRacerTransform(r, 0.016));
     setMenuStep('welcome');
-    if (new URLSearchParams(window.location.search).get('admin') === '1') {
+    const initUrlParams = new URLSearchParams(window.location.search);
+    if (initUrlParams.get('admin') === '1') {
       setAdminMode(true);
+    }
+    if (initUrlParams.get('room')) {
+      const inviteCode = initUrlParams.get('room').trim().toUpperCase();
+      setMenuStep('map');
+      setMultiplayerMode('online2p');
+      if (onlineRoomInputEl) onlineRoomInputEl.value = inviteCode;
+      setTimeout(() => joinOnlineRoom(inviteCode), 750);
     }
 
     const clock = new THREE.Clock();
@@ -16858,21 +18092,21 @@
 
       if (gameState === 'menu') {
         if (menuStep === 'car') {
-          // Hold player hero-car poised on the lit Start/Finish straight for 3D Garage Showroom!
-          player.u = (currentCourse && currentCourse.finishU) ? currentCourse.finishU : 0.012;
-          player.lat = 0;
-          player.relYaw = 0;
-          player.driftSlip = 0;
-          player.steerAngle = Math.sin(totalTime * 0.8) * 0.18;
-          player.speed = 24;
-          updateRacerTransform(player, dt);
-          // Keep AI rivals cruising in the distance for lively atmosphere (with physical separation!)
-          for (let idx = 1; idx < racers.length; idx++) {
+          const showRacer = garageActiveSlot === 1 ? racers[1] : player;
+          showRacer.u = (currentCourse && currentCourse.finishU) ? currentCourse.finishU : 0.012;
+          showRacer.lat = 0;
+          showRacer.relYaw = 0;
+          showRacer.driftSlip = 0;
+          showRacer.steerAngle = Math.sin(totalTime * 0.8) * 0.18;
+          showRacer.speed = 24;
+          updateRacerTransform(showRacer, dt);
+          for (let idx = 0; idx < racers.length; idx++) {
             const r = racers[idx];
+            if (r === showRacer) continue;
             if (r.bumpCooldown > 0) r.bumpCooldown = Math.max(0, r.bumpCooldown - dt);
             r.speed = THREE.MathUtils.lerp(r.speed || 46, 46 + idx * 1.6, dt * 2.5);
             r.u = (r.u + (r.speed * dt) / TRACK_LENGTH) % 1;
-            if (Math.abs(r.u - player.u) < 0.08 || r.u > 0.94) r.u = 0.28 + idx * 0.14;
+            if (Math.abs(r.u - showRacer.u) < 0.08 || r.u > 0.94) r.u = 0.28 + idx * 0.14;
             const info = getRoadDeckInfo(r.u);
             const targetLat = (info.isSplit && info.rightDeck)
               ? (idx % 2 === 0 ? info.leftDeck.center : info.rightDeck.center)
@@ -16930,7 +18164,7 @@
             gameState = 'racing';
             showCallout('GO!!', 0.85);
             sound.playTone(880, 0.32, 'sawtooth', 0.22);
-            spawnComicBubble('VROOOM!', player.worldPos, 'action', 1.25);
+            spawnComicBubble('VROOOM!', getLocalPrimaryRacer().worldPos, 'action', 1.25);
             announceSR('Go! Race started!');
           }
         }
@@ -16940,29 +18174,95 @@
         sound.updateContinuous(0.18, false, false, true);
       } else if (gameState === 'racing') {
         raceElapsed += dt;
-        // Each racer handles its own Dimensional Rift Flip independently when crossing the Start/Finish line!
-        updatePlayerPhysics(dt);
-        for (let i = 1; i < racers.length; i++) {
-          updateAIRacer(racers[i], dt);
+
+        // 2-Player Grace Countdown after first human crosses finish line
+        if ((isLocal2P() || isOnline2P()) && splitFinishGraceTimer > 0) {
+          splitFinishGraceTimer -= dt;
+          if (splitFinishGraceTimer <= 0) {
+            showFinishScreen();
+          }
         }
+
+        if (isLocal2P()) {
+          // LOCAL 2P SPLIT-SCREEN: P1 + P2 human physics + 2 AI rivals!
+          if (racers[0].finished) updateAIRacer(racers[0], dt);
+          else updateHumanRacerPhysics(racers[0], pollGamepadControls(0, keys, racers[0]), dt);
+
+          if (racers[1].finished) updateAIRacer(racers[1], dt);
+          else updateHumanRacerPhysics(racers[1], pollGamepadControls(1, keysP2, racers[1]), dt);
+
+          updateAIRacer(racers[2], dt);
+          updateAIRacer(racers[3], dt);
+        } else if (isOnline2P()) {
+          // ONLINE 2P WEBRTC: Local player runs at 60fps; Host runs AI rivals; remote racers interpolate smoothly!
+          if (online.role === 'host') {
+            if (racers[0].finished) updateAIRacer(racers[0], dt);
+            else updateHumanRacerPhysics(racers[0], pollGamepadControls(0, keys, racers[0]), dt);
+
+            if (online.remoteTargets.rival1) applyRemoteRacerSnapshot(racers[1], online.remoteTargets.rival1, dt);
+            else updateAIRacer(racers[1], dt);
+
+            updateAIRacer(racers[2], dt);
+            updateAIRacer(racers[3], dt);
+
+            online.sendAccum += dt;
+            if (online.sendAccum >= 0.033) {
+              online.sendAccum = 0;
+              sendOnlineMsg({
+                type: 'state',
+                t: +raceElapsed.toFixed(3),
+                p1: packRacerState(racers[0]),
+                ai2: packRacerState(racers[2]),
+                ai3: packRacerState(racers[3])
+              });
+            }
+          } else {
+            // Guest drives racers[1] locally with zero input lag!
+            if (racers[1].finished) updateAIRacer(racers[1], dt);
+            else updateHumanRacerPhysics(racers[1], pollGamepadControls(0, keys, racers[1]), dt);
+
+            if (online.remoteTargets.player) applyRemoteRacerSnapshot(racers[0], online.remoteTargets.player, dt);
+            if (online.remoteTargets.rival2) applyRemoteRacerSnapshot(racers[2], online.remoteTargets.rival2, dt);
+            if (online.remoteTargets.rival3) applyRemoteRacerSnapshot(racers[3], online.remoteTargets.rival3, dt);
+
+            online.sendAccum += dt;
+            if (online.sendAccum >= 0.033) {
+              online.sendAccum = 0;
+              sendOnlineMsg({
+                type: 'state',
+                p2: packRacerState(racers[1])
+              });
+            }
+          }
+        } else {
+          // 1P SOLO
+          updatePlayerPhysics(dt);
+          for (let i = 1; i < racers.length; i++) {
+            updateAIRacer(racers[i], dt);
+          }
+        }
+
         resolveCarCollisions();
         updateCourseFeatures(dt, totalTime);
         updatePowerupWorld(dt, totalTime);
         updateFX(dt);
         updateHUD(dt);
 
-        const boosting = player.isBoosting || player.padBoostTimer > 0 || player.miniTurboTimer > 0 || player.superOverdriveTimer > 0;
-        const speedIntensity = player.recoveryState !== 'none'
+        const primary = getLocalPrimaryRacer();
+        const boosting = primary.isBoosting || primary.padBoostTimer > 0 || primary.miniTurboTimer > 0 || primary.superOverdriveTimer > 0;
+        const speedIntensity = isLocal2P()
           ? 0
-          : (boosting ? 1.0 : Math.max(0, (player.speed - 48) / 26));
-        drawSpeedLines(speedIntensity, totalTime, player.recoveryState === 'none' ? (player.lightningChain || 0) : 0);
+          : (primary.recoveryState !== 'none'
+            ? 0
+            : (boosting ? 1.0 : Math.max(0, (primary.speed - 48) / 26)));
+        drawSpeedLines(speedIntensity, totalTime, primary.recoveryState === 'none' ? (primary.lightningChain || 0) : 0);
 
         sound.updateContinuous(
-          player.recoveryState !== 'none' ? 0.1 : player.speed / 56,
-          player.isDrifting,
+          primary.recoveryState !== 'none' ? 0.1 : primary.speed / 56,
+          primary.isDrifting,
           boosting,
           true,
-          player.stats?.enginePitch || 1.0
+          primary.stats?.enginePitch || 1.0
         );
       } else if (gameState === 'paused') {
         sound.updateContinuous(0, false, false, false);
@@ -16976,7 +18276,28 @@
       }
 
       updateCamera(dt, totalTime);
-      composer.render();
+
+      if (isLocal2P() && gameState !== 'menu') {
+        // TRUE SIDE-BY-SIDE 2-PLAYER SPLIT-SCREEN RENDERING (Left = P1, Right = P2!)
+        const w = window.innerWidth;
+        const h = window.innerHeight;
+        const halfW = Math.floor(w * 0.5);
+        renderer.setScissorTest(true);
+
+        renderer.setViewport(0, 0, halfW, h);
+        renderer.setScissor(0, 0, halfW, h);
+        renderer.render(scene, camera);
+
+        renderer.setViewport(halfW, 0, w - halfW, h);
+        renderer.setScissor(halfW, 0, w - halfW, h);
+        renderer.render(scene, cameraP2);
+
+        renderer.setScissorTest(false);
+        renderer.setViewport(0, 0, w, h);
+      } else {
+        renderer.setScissorTest(false);
+        composer.render();
+      }
     }
 
     animate();
